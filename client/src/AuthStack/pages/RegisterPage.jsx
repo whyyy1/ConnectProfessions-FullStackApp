@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { useDispatch, useSelector } from 'react-redux';
-import { userInfo } from "../../Redux/UserSlice";
+import { userInfo,signUp } from "../../Redux/UserSlice";
 import { useNavigate } from "react-router-dom";
 import sideImage from '../../../public/QHG.gif'
 function RegisterForm() {
@@ -18,7 +18,7 @@ function RegisterForm() {
     email: "",
     password: "",
     type: "",
-    id: crypto.randomUUID()
+    
 
   });
 
@@ -30,7 +30,7 @@ function RegisterForm() {
   async function handleRegister(e) {
     e.preventDefault()
     console.log(regForm);
-    dispatch(userInfo({type:'signUp',payload:regForm}))
+    dispatch({type:'signUp',payload:regForm})
     // navigate(`/profile/${regForm.id}`)
   }
 

@@ -5,7 +5,7 @@ const cpController = require('../controllers/cpController')
 
 const generalMiddleWare = require('../middleware/authMiddle')
 
-
+const signUpMiddle = require('../middleware/signUpMiddle')
 
 
 
@@ -16,6 +16,8 @@ const generalMiddleWare = require('../middleware/authMiddle')
 
 
 router.get('/',generalMiddleWare,cpController.index)
+
+router.post('/register',signUpMiddle,cpController.create)
 
 
 module.exports = router

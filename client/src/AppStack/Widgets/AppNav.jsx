@@ -1,10 +1,10 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState,React } from 'react'
-import { useNavigate } from "react-router-dom";
-function NavBar({type}) {
+import { useNavigate ,useParams  } from "react-router-dom";
+function AppBar({type,id}) {
   const navigate = useNavigate();
   let [isOpen, setIsOpen] = useState(false)
-
+ 
   function closeModal() {
     setIsOpen(false)
   }
@@ -62,22 +62,16 @@ function NavBar({type}) {
                     Navigate
                   </Dialog.Title>
                   <div className="mt-2">
-                    {type === 'auth'? <><a onClick={()=>{navigate('/')}} class="dropdown-item text-sm">Home</a>
-            <a onClick={()=>{navigate('/login')}} tabIndex="-1" class="dropdown-item text-sm">
-              Login
-            </a>
-            <a onClick={()=>{navigate('/register')}} tabIndex="-1" class="dropdown-item text-sm">
-              Register
-            </a></>:<><a onClick={()=>{navigate('/home/:id')}} class="dropdown-item text-sm">Home</a>
-            <a onClick={()=>{navigate('/profile/:id')}} tabIndex="-1" class="dropdown-item text-sm">
+                    <a onClick={()=>{navigate(`/home/${id}`)}} class="dropdown-item text-sm">Home</a>
+            <a onClick={()=>{navigate(`/profile/${id}`)}} tabIndex="-1" class="dropdown-item text-sm">
               Profile
             </a>
-            <a onClick={()=>{navigate('/search/:id')}} tabIndex="-1" class="dropdown-item text-sm">
+            <a onClick={()=>{navigate(`/search/${id}`)}} tabIndex="-1" class="dropdown-item text-sm">
               Search
             </a>
             <a onClick={()=>{navigate('/logout')}} tabIndex="-1" class="dropdown-item text-sm">
               Logout
-            </a></>}
+            </a>
                   
                   </div>
 
@@ -101,4 +95,4 @@ function NavBar({type}) {
   );
 }
 
-export default NavBar;
+export default AppBar;

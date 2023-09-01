@@ -3,21 +3,23 @@ import axios from "axios";
 // Set user initial state on render
 
 const getInitialUserState = () => {
-  // check if user is in local storage
-  const storeState = localStorage.getItem("user");
-
-  if (storeState) {
-    let data = JSON.parse(storeState);
-    if (data && data.isLoggedIn) {
-      return data;
-    } else {
-      return {
-        isLoggedIn: false,
-        token: "",
-      };
+    // check if user is in local storage
+    const storeState = localStorage.getItem("user");
+  
+    if (storeState) {
+      let data = JSON.parse(storeState);
+      if (data && data.isLoggedIn) {
+        return data;
+      }
     }
-  }
-};
+  
+    // Return the initial state if user data is not found or not logged in
+    return {
+      isLoggedIn: false,
+      token: "",
+    };
+  };
+  
 
 // UserSlice what we do with our user
 
@@ -27,7 +29,16 @@ export const userSlice = createSlice({
   reducers: {
     // this sets the user
     userInfo: (state, action) => {
-      console.log(action.payload);
+      // state.token = action.payload
+      // state.isLoggedIn = true
+      // localStorage.setItem('user',JSON.stringify(state.user))
+      console.log(action.payload,);
+    },
+    signUp: (state, action) => {
+      state.token = action.payload
+      state.isLoggedIn = true
+      localStorage.setItem('user',JSON.stringify(state.user))
+      
     },
   },
 });
@@ -36,40 +47,37 @@ export const saveStateMiddleware = (store) => (next) => (action) => {
   let userFunctionRequest = action.type;
   let actionRequest = action.payload.type;
 
-  let options = ["userInfo"];
+  let options = ["userInfo", "signUp"];
+  console.log(action.type);
   options.map((reqType) => {
-    if (userFunctionRequest === `${userSlice.name}/${reqType}`) {
-      switch (actionRequest) {
-        case "signUp":
-          // Make the Axios request
-          axios
-            .get("http://localhost:5000", action.payload)
-            .then((response) => {
-              // Dispatch a success action with the response data
-              console.log(response.data)
-            //   store.dispatch(userInfo(response.data));
-            })
-            .catch((error) => {
-              // Dispatch a failure action with the error
-              store.dispatch(userInfo(error));
-            });
+    switch (action.type) {
+      case "signUp":
+        // Make the Axios request
+        axios
+          .post("http://localhost:5000/cp/register", action.payload)
+          .then((response) => {
+            // Dispatch a success action with the response data
+            console.log(response.data.message);
+            //store token
+            store.dispatch(signUp(response.data.message));
+          })
+          .catch((error) => {
+            // Dispatch a failure action with the error
+            store.dispatch(signUp(error));
+          });
 
-          // You can return the result of next(action) if needed
-        //   return next(action);
-      }
-    //   console.log(actionRequest);
+      //           // You can return the result of next(action) if needed
+                return next(action);
     }
+    //   console.log(actionRequest);
   });
 
-  //we get the incoming data from the client and choose what to do with it
-  // const result = next(action);
-  // // Save the updated state to local storage
-  // localStorage.setItem('user', JSON.stringify(store.getState().user));
-  // return result;
-  //if pass this check moves to the user functions
+  //this if it passes to the user functions to execute
+  const result = next(action);
+  
 };
 
 // Action creators are generated for each case reducer function
-export const { userInfo } = userSlice.actions;
+export const { userInfo, signUp } = userSlice.actions;
 
 export default userSlice.reducer;

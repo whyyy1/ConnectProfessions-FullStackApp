@@ -23,5 +23,5 @@ app.get('/',(req,res) => {
 
 
 app.listen(process.env.PORT,()=>{
-    console.log('listen in on:',process.env.URL_+ ":"+ process.env.PORT)
+    console.log('listen in on:',process.env.URL_+ process.env.PORT)
 })
