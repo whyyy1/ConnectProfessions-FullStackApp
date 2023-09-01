@@ -25,12 +25,16 @@ function RegisterForm() {
   const options = ["Student/Alumni", "Coach/Staff"];
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
+
   async function handleRegister(e) {
     e.preventDefault()
     console.log(regForm);
-    dispatch(userInfo(regForm))
-    navigate(`/profile/${regForm.id}`)
+    dispatch(userInfo({type:'signUp',payload:regForm}))
+    // navigate(`/profile/${regForm.id}`)
   }
+
+
   function handleChange(event) {
     if (event.target.id === "type") {
         
@@ -42,6 +46,8 @@ function RegisterForm() {
       setRegForm({ ...regForm, [event.target.id]: event.target.value });
     }
   }
+
+
 
   return (
     <div className="flex flex-wrap justify-evenly bg-slate-900">
