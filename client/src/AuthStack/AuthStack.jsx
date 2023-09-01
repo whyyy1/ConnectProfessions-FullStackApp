@@ -4,7 +4,7 @@ import MainPage from './pages/MainPage';
 
 import LoginPage  from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
-import AuthNav from './widgets/AuthNav';
+
 
 
 function AuthStack() {
@@ -16,7 +16,7 @@ function AuthStack() {
       <Route path='/register' element={<RegisterPage />} />
       
     </Routes>
-    <AuthNav/>
+    
     </div>
   );
 }

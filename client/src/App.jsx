@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
+import { ChakraProvider } from "@chakra-ui/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import AuthStack from "./AuthStack/AuthStack";
 import AppStack from "./AppStack/AppStack";
+import NavBar from "./widgets/AuthNav";
 
 function App() {
   const currentUser = useSelector((state) => state.user);
@@ -23,11 +25,13 @@ function App() {
   }, [currentUser]);
 
   return (
-    
-      <Router>{currentUser.isLoggedIn ? <AppStack /> : <AuthStack />}
+    <ChakraProvider>
+      <Router>
+        
+        {currentUser.isLoggedIn ? <><AppStack /><NavBar type={'app'}/></> :<> <AuthStack /><NavBar type={'auth'}/></>}
       
-      </Router>
-    
+        </Router>
+    </ChakraProvider>
   );
 }
 
