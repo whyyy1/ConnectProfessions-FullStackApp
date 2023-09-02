@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { userInfo,signUp } from "../../Redux/UserSlice";
 import { useNavigate } from "react-router-dom";
 import sideImage from '../../../public/QHG.gif'
-function RegisterForm() {
+function RegisterForm({id}) {
   const [currentOption, setCurrentOption] = useState(null);
   const [regForm, setRegForm] = useState({
     firstName: "",
@@ -31,7 +31,8 @@ function RegisterForm() {
     e.preventDefault()
     console.log(regForm);
     dispatch({type:'signUp',payload:regForm})
-    // navigate(`/profile/${regForm.id}`)
+    
+    navigate(`/loading`)
   }
 
 

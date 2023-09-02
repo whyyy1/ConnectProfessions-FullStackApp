@@ -41,7 +41,7 @@ module.exports.create = async (req,res) => {
         console.log('hey he at the end of the creation')
         const token = jwt.sign(payload, process.env.THANG, { expiresIn: process.env.TIME_TOKEN });
   
-        res.status(200).json({message: token });
+        res.status(200).json({message: token , id:payload.id });
     }catch(e){
         res.json({error:e.message})
     }
