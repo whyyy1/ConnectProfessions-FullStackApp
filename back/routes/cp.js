@@ -18,6 +18,7 @@ const signUpMiddle = require('../middleware/signUpMiddle')
 router.get('/home/:id',generalMiddleWare,cpController.index)
 
 router.post('/register',signUpMiddle,cpController.create)
+router.put('/profile/edit/:id',generalMiddleWare,cpController.update)
 
 
 module.exports = router

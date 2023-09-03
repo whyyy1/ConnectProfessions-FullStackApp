@@ -1,7 +1,8 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState, React } from "react";
-function ModalEdit({type,data}) {
+function ModalEdit({ type, data,editChange,id}) {
   const [isOpen, setIsOpen] = useState(false);
+  const [editInput,setEditInput] = useState(data)
 
   function closeModal() {
     setIsOpen(false);
@@ -10,20 +11,28 @@ function ModalEdit({type,data}) {
   function openModal() {
     setIsOpen(true);
   }
-   function updateInput() {
-    console.log('set data')
+  async function updateInput(e) {
+    e.preventDefault();
+    editChange(id,editInput);
     closeModal()
+        
+  }
+
+  function handleChange(event) {
+    
+      setEditInput(event.target.value)
+    
   }
 
   return (
     <div>
-        <button
-          type="button"
-          onClick={openModal}
-          className="rounded-md bg-black bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-        >
-          edit
-        </button>
+      <button
+        type="button"
+        onClick={openModal}
+        className="rounded-md bg-black bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+      >
+        edit
+      </button>
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
           <Transition.Child
@@ -53,24 +62,43 @@ function ModalEdit({type,data}) {
                   <Dialog.Title
                     as="h3"
                     className="text-lg font-medium leading-6 text-gray-900"
-                  >
-                    
-                  </Dialog.Title>
-                  <div className="mt-2">
-                   
-
-                   
-                  </div>
+                  ></Dialog.Title>
+                  <div className="mt-2"></div>
 
                   <div className="mt-4">
-                    <input type={type} placeholder={data}/>
-                    <button
-                      type="button"
-                      className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                      onClick={()=>{updateInput()}}
+                    <form className=" flex justify-evenly"
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        updateInput(e);
+                      }}
                     >
-                      update
-                    </button>
+                        <div className="flex flex-col">
+                    <label className="text-lg font-bold">{id.toUpperCase()}</label>
+                      {id === "about" ? (
+                        <textarea
+                          type={type}
+                          placeholder={data}
+                          
+                          onChange={handleChange}
+                          value={editInput}
+                        ></textarea>
+                      ) : (
+                        <input
+                          type={type}
+                          placeholder={data}
+                          
+                          onChange={handleChange}
+                          value={editInput}
+                        />
+                      )}
+                      </div>
+                      <button
+                        type="submit"
+                        className=" justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      >
+                        update
+                      </button>
+                    </form>
                     {/* <button
                       type="button"
                       className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"

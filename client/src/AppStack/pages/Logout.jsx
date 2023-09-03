@@ -11,9 +11,10 @@ const LogoutPage = () => {
   useEffect(() => {
     async function logEverythingOut() {
       // Dispatch the logout action
-      navigate("/");
+      
       dispatch(logout());
-      window.location.reload();
+      
+      navigate("/");
     }
 
     logEverythingOut();

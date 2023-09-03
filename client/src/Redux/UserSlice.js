@@ -36,13 +36,18 @@ export const userSlice = createSlice({
       console.log(action.payload);
     },
     signUp: (state, action) => {
-        console.log(action.payload)
+        console.log(action)
       state.token = action.payload.message
       state.id = action.payload.id
-    //   console.log(state, state.isLoggedIn,state.token)
+     
       state.isLoggedIn = true
       localStorage.setItem('user',JSON.stringify({isLoggedIn: state.isLoggedIn,token:state.token}))
+      window.location.reload()
+      return state
       
+    },
+    editUser:(state,action) => {
+        console.log(action)
     },
     logout: (state) => {
         // Clear local storage
@@ -52,9 +57,9 @@ export const userSlice = createSlice({
 
         // Reset state
         state.isLoggedIn = false, // Default to not logged in if no data is found
-            state.token = null,
+        state.token = null,
 
-            console.log('User state reset');
+        console.log('User state reset');
         return state
     },
   },
@@ -62,6 +67,6 @@ export const userSlice = createSlice({
 
 
 // Action creators are generated for each case reducer function
-export const { userInfo, signUp,logout } = userSlice.actions;
+export const { userInfo, signUp,logout,editUser } = userSlice.actions;
 
 export default userSlice.reducer;

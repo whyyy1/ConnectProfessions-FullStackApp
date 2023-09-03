@@ -6,7 +6,7 @@ import {
   Button,
   Typography,
 } from "@material-tailwind/react";
-import sideImage from '../../../public/fzUl.gif'
+import sideImage from '../../../public/fzUl.gif?url'
 function LoginPage() {
     const [loginForm, setForm] = useState({
 

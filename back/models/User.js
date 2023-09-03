@@ -33,6 +33,36 @@ const userSchema = new mongoose.Schema({
         required: false,
        
     },
+    resume: {
+        type: String,
+        default:'n/a',
+        required: false,
+       
+    },
+    about: {
+        type: String,
+        default:'n/a',
+        required: false,
+       
+    },
+    course: {
+        type: String,
+        default:'n/a',
+        required: false,
+       
+    },
+    github: {
+        type: String,
+        default:'n/a',
+        required: false,
+       
+    },
+    linkedIn: {
+        type: String,
+        default:'n/a',
+        required: false,
+       
+    },
 
 });
 

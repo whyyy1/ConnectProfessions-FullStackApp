@@ -9,8 +9,8 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { userInfo,signUp } from "../../Redux/UserSlice";
 import { useNavigate } from "react-router-dom";
-import sideImage from '../../../public/QHG.gif'
-function RegisterForm({id}) {
+import sideImage from '../../../public/QHG.gif?url'
+function RegisterForm() {
   const [currentOption, setCurrentOption] = useState(null);
   const [regForm, setRegForm] = useState({
     firstName: "",
@@ -18,6 +18,11 @@ function RegisterForm({id}) {
     email: "",
     password: "",
     type: "",
+    resume:"",
+    course:"",
+    about:'',
+    github:'',
+    linkedIn:'',
     
 
   });
@@ -33,6 +38,7 @@ function RegisterForm({id}) {
     dispatch({type:'signUp',payload:regForm})
     
     navigate(`/loading`)
+    
   }
 
 
@@ -105,6 +111,7 @@ function RegisterForm({id}) {
             {options.map((option) => {
                 return (
                 <Checkbox
+                key={option}
                     id="type"
                     value={option}
                     onChange={handleChange}

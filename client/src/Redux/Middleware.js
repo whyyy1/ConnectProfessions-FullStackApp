@@ -15,11 +15,31 @@ export const saveStateMiddleware = (store) => (next) => (action) => {
           console.log(response.data.message);
           // Store token
           store.dispatch(signUp(response.data));
+         
         })
         .catch((error) => {
           // Dispatch a failure action with the error
           store.dispatch(signUp(error));
         });
+    
+        
+    }
+    if(actionRequest === "editUser"){
+        console.log(action.payload)
+        axios
+        .put(`http://localhost:5000/cp/profile/edit/${action.payload.id}`, action.payload.form)
+        .then((response) => {
+          // Dispatch a success action with the response data
+          console.log(response)
+          
+        //   // Store token
+        //   store.dispatch(signUp(response.data));
+        })
+        .catch((error) => {
+          // Dispatch a failure action with the error
+          store.dispatch(signUp(error));
+        });
+
     }
   
     // Continue the action through the middleware chain

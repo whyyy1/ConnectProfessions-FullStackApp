@@ -18,7 +18,7 @@ app.use(express.static('public'))
 app.use('/cp', cp)
 
 app.get('/',(req,res) => {
-    console.log('hey',newsData)
+    // console.log('hey',newsData)
     res.json({message:newsData})
 })
 
