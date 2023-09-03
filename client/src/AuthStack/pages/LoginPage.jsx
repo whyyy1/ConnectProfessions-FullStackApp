@@ -7,7 +7,14 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import sideImage from '../../../public/fzUl.gif?url'
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { login } from "../../Redux/UserSlice";
+
 function LoginPage() {
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
     const [loginForm, setForm] = useState({
 
         email: "",
@@ -20,37 +27,27 @@ function LoginPage() {
       const handleLogin = async (e) => {
         e.preventDefault()
         // Simulating a login process
-        console.log(loginForm)
-        // if (form.email !== '' && form.password !== '') {
-    
-    
-        //   try {
-        //     const data = await axios.post(server, form)
-        //     // console.log(data.data.token)
-        //     const user = await jwt(data.data.token)
-        //     // console.log(user.id,"me the user")
-        //   if(user){
-        //     user.chart = JSON.parse(user.chart)
-        //     // console.log(user.chart)
-        //     navigate(`/home/${user.id}`);
-        //     dispatch(userInfo(user));
-        //   }
+        if(loginForm.email !== "" && loginForm.password){
+            try{
+                const loginData = await axios.post('http://localhost:5000/cp/login',loginForm)
+                console.log(loginData.data)
+                dispatch(login(loginData.data.message))
+                navigate(`/home/${loginData.data.id}`)
+            }
+            catch(e){
+                console.log(e)
+            }
             
-        //   } catch (error) {
-        //     console.error('Error processing form:', error.response.status,error.message);
-        //     if(error.response.status === 403){
-        //       alert('Invalid credentials. Please try again.');
-        //     }
-        //     if(error.response.status === 404){
-        //       alert('User not found')
-        //     }
+        }else{
+            alert('Enter creditenals!')
+        }
+       
+    
+          
             
-        //   }
-        // } else {
-        //   alert('Please enter info.');
-        // }
-      };
-
+          }
+        
+      
 
       function handleChange(event) {
 
@@ -58,6 +55,7 @@ function LoginPage() {
         setForm({ ...loginForm, [event.target.id]: event.target.value })
       }
   return (
+    
     <div className="flex flex-wrap justify-evenly bg-slate-900">
         <img src={sideImage} className="w-1/3 p-4"/>
         <Card color="white" shadow={false} className=" h-screen text-center bg-violet-500 w-1/3 rounded-xl items-center justify-center">
@@ -72,7 +70,7 @@ function LoginPage() {
             Login in user to acces your account.
         </Typography>
         </div>
-        <form className="   flex flex-col justify-center  h-1/2 items-center rounded-xl">
+        <form onSubmit={handleLogin} className="   flex flex-col justify-center  h-1/2 items-center rounded-xl">
             <div className=" flex flex-col gap-16 p-10 text-2xl mt-20">
             
             <Input   label="Email" id="email" value={loginForm.email} onChange={handleChange} className="bg-white hover:bg-opacity-60" />
@@ -95,7 +93,7 @@ function LoginPage() {
             }
             
             />
-            <Button className="m-10 hover:bg-black text-lg p-5 rounded-lg" >
+            <Button type="submit" className="m-10 hover:bg-black text-lg p-5 rounded-lg" >
             Login
             </Button>
             <Typography color="black" className="mt-4 text-center font-bold">

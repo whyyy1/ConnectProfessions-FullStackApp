@@ -10,6 +10,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { userInfo,signUp } from "../../Redux/UserSlice";
 import { useNavigate } from "react-router-dom";
 import sideImage from '../../../public/QHG.gif?url'
+import axios from "axios";
+
 function RegisterForm() {
   const [currentOption, setCurrentOption] = useState(null);
   const [regForm, setRegForm] = useState({
@@ -35,9 +37,11 @@ function RegisterForm() {
   async function handleRegister(e) {
     e.preventDefault()
     console.log(regForm);
-    dispatch({type:'signUp',payload:regForm})
+    const response = await axios.post("http://localhost:5000/cp/register", regForm);
+    console.log(response.data)
+    dispatch(signUp(response.data.message))
     
-    navigate(`/loading`)
+    navigate(`/profile/edit/${response.data.id}`)
     
   }
 

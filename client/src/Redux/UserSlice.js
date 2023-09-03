@@ -35,14 +35,20 @@ export const userSlice = createSlice({
       // localStorage.setItem('user',JSON.stringify(state.user))
       console.log(action.payload);
     },
+    login:  (state, action) => {
+        state.token = action.payload
+        state.isLoggedIn = true
+        localStorage.setItem('user',JSON.stringify({isLoggedIn: state.isLoggedIn,token:state.token}))
+        console.log(action.payload,'hety');
+      },
     signUp: (state, action) => {
-        console.log(action)
-      state.token = action.payload.message
-      state.id = action.payload.id
+        console.log(action.payload)
+      state.token = action.payload
+    //   state.id = action.payload.id
      
       state.isLoggedIn = true
       localStorage.setItem('user',JSON.stringify({isLoggedIn: state.isLoggedIn,token:state.token}))
-      window.location.reload()
+      
       return state
       
     },
@@ -67,6 +73,6 @@ export const userSlice = createSlice({
 
 
 // Action creators are generated for each case reducer function
-export const { userInfo, signUp,logout,editUser } = userSlice.actions;
+export const { userInfo, signUp,logout,editUser,login } = userSlice.actions;
 
 export default userSlice.reducer;

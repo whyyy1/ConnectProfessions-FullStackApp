@@ -6,7 +6,5 @@ import { saveStateMiddleware } from './Middleware'
 export default configureStore({
     reducer : {
         user : userReducer
-    }, 
-    middleware: (getDefaultMiddleWare) =>
-    getDefaultMiddleWare().concat(saveStateMiddleware)
+    }
 })

@@ -8,10 +8,10 @@ import {  Navigate } from 'react-router-dom'
 import { useSelector } from "react-redux";
 
 
-function AuthStack({id}) {
-  const userId = useSelector((state) => state.user.id);
+function AuthStack() {
+  
   useEffect(()=>{
-    console.log(userId)
+    
   },[])
   return (
     <div className="relative flex flex-col h-screen">
