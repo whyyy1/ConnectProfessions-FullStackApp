@@ -3,7 +3,7 @@ require('dotenv')
 const cors = require('cors')
 const methodOverride = require('method-override')
 const mongoConfig  = require('./config')
-
+const newsData = require('./data/newsData')
 mongoConfig()
 
 
@@ -18,7 +18,8 @@ app.use(express.static('public'))
 app.use('/cp', cp)
 
 app.get('/',(req,res) => {
-    console.log('hey')
+    console.log('hey',newsData)
+    res.json({message:newsData})
 })
 
 

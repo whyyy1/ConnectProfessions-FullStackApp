@@ -9,7 +9,7 @@ module.exports.index = async (req,res) =>{
 
 module.exports.create = async (req,res) => {
 
-    console.log('Create post',req.body)
+    console.log('Create path',req.body)
 
     try{
         const {firstName ,lastName, email, password, type} = req.body

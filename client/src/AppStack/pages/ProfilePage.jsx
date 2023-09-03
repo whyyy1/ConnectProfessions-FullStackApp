@@ -1,8 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react'
+import ModalEdit from '../Widgets/ModalEdit'
 
-function ProfilePage() {
+function ProfilePage({user}) {
+    const [updateForm,setUpdateForm] = useState({
+
+    })
+    console.log(user)
   return (
-    <div>ProfilePage</div>
+    <div>
+        <div>
+            <h1>Hello {user.firstName}!</h1>
+            <p>Please complete filling out you profile!</p>
+            <form>
+                <div>
+                    <label>First Name</label>
+                    <ModalEdit type={'text'} data={user.firstName}/>
+                </div>
+                
+                
+                
+            </form>
+        </div>
+
+
+
+    </div>
   )
 }
 

@@ -15,7 +15,7 @@ const signUpMiddle = require('../middleware/signUpMiddle')
 //Routes INDUCES -> Index New Delete/Destroy Update Create Edit Show
 
 
-router.get('/',generalMiddleWare,cpController.index)
+router.get('/home/:id',generalMiddleWare,cpController.index)
 
 router.post('/register',signUpMiddle,cpController.create)
 

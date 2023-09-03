@@ -44,11 +44,24 @@ export const userSlice = createSlice({
       localStorage.setItem('user',JSON.stringify({isLoggedIn: state.isLoggedIn,token:state.token}))
       
     },
+    logout: (state) => {
+        // Clear local storage
+
+        localStorage.clear();
+        console.log('Item removed from local storage');
+
+        // Reset state
+        state.isLoggedIn = false, // Default to not logged in if no data is found
+            state.token = null,
+
+            console.log('User state reset');
+        return state
+    },
   },
 });
 
 
 // Action creators are generated for each case reducer function
-export const { userInfo, signUp } = userSlice.actions;
+export const { userInfo, signUp,logout } = userSlice.actions;
 
 export default userSlice.reducer;

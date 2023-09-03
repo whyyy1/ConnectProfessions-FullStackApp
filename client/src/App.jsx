@@ -8,11 +8,17 @@ import AppStack from "./AppStack/AppStack";
 import jwt from 'jwt-decode' 
 import AppBar from "./AppStack/Widgets/AppNav";
 import AuthBar from "./AuthStack/widgets/AuthNav";
+import axios from "axios";
 function App() {
   const currentUser = useSelector((state) => state.user);
   const [user,setUser] = useState({})
+  const [news,setNews] = useState([])
  
   useEffect(() => {
+    async function getNews(){
+      let data = await axios.get('http://localhost:5000/')
+      setNews(data.data.message)
+    }
     async function getUser() {
       if (!currentUser.isLoggedIn) {
         // User is not logged in, handle accordingly
@@ -29,14 +35,15 @@ function App() {
       }
     }
     getUser();
+    getNews()
   }, [currentUser.isLoggedIn]);
 
   return (
     <ChakraProvider>
       <Router>
         
-        {currentUser.isLoggedIn ? <><AppStack user={user} /><AppBar type={'app'} id={user.id} /></> :<> <AuthStack /><AuthBar type={'auth'} id={user.id}/></>}
-        <button onClick={()=> console.log(user)}>Click me</button>
+        {currentUser.isLoggedIn ? <><AppStack user={user} news={news} /><AppBar type={'app'} id={user.id} /></> :<> <AuthStack /><AuthBar type={'auth'} id={user.id}/></>}
+        
         
         </Router>
     </ChakraProvider>
