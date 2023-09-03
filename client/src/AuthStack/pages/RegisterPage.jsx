@@ -7,9 +7,11 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { useDispatch, useSelector } from 'react-redux';
-import { userInfo } from "../../Redux/UserSlice";
+import { userInfo,signUp } from "../../Redux/UserSlice";
 import { useNavigate } from "react-router-dom";
-import sideImage from '../../../public/QHG.gif'
+import sideImage from '../../../public/QHG.gif?url'
+import axios from "axios";
+
 function RegisterForm() {
   const [currentOption, setCurrentOption] = useState(null);
   const [regForm, setRegForm] = useState({
@@ -18,19 +20,32 @@ function RegisterForm() {
     email: "",
     password: "",
     type: "",
-    id: crypto.randomUUID()
+    resume:"",
+    course:"",
+    about:'',
+    github:'',
+    linkedIn:'',
+    
 
   });
 
   const options = ["Student/Alumni", "Coach/Staff"];
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
+
   async function handleRegister(e) {
     e.preventDefault()
     console.log(regForm);
-    dispatch(userInfo(regForm))
-    navigate(`/profile/${regForm.id}`)
+    const response = await axios.post("http://localhost:5000/cp/register", regForm);
+    console.log(response.data)
+    dispatch(signUp(response.data.message))
+    
+    navigate(`/profile/edit/${response.data.id}`)
+    
   }
+
+
   function handleChange(event) {
     if (event.target.id === "type") {
         
@@ -42,6 +57,8 @@ function RegisterForm() {
       setRegForm({ ...regForm, [event.target.id]: event.target.value });
     }
   }
+
+
 
   return (
     <div className="flex flex-wrap justify-evenly bg-slate-900">
@@ -98,6 +115,7 @@ function RegisterForm() {
             {options.map((option) => {
                 return (
                 <Checkbox
+                key={option}
                     id="type"
                     value={option}
                     onChange={handleChange}

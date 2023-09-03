@@ -1,44 +1,78 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+import axios from "axios";
 // Set user initial state on render
 
 const getInitialUserState = () => {
-  // check if user is in local storage
-  const storeState = localStorage.getItem("user");
-
-  if (storeState) {
-    let data = JSON.parse(storeState);
-    if (data && data.isLoggedIn) {
-      return data;
-    } else {
-      return {
-        isLoggedIn: false,
-        token: "",
-      };
+    // check if user is in local storage
+    const storeState = localStorage.getItem("user");
+    console.log(storeState)
+    if (storeState) {
+      let data = JSON.parse(storeState);
+      if (data && data.isLoggedIn) {
+        return data;
+      }
     }
-  }
-};
-
+  
+    // Return the initial state if user data is not found or not logged in
+    return {
+      isLoggedIn: false,
+      token: "",
+      
+    };
+  };
+  
 
 // UserSlice what we do with our user
 
 export const userSlice = createSlice({
-    name: 'user',
-    initialState: getInitialUserState(), 
-    reducers: {
-        // this sets the user 
-        userInfo: (state,action)=>{
-            console.log(action.payload)
-        }
-    }
-})
-//save middleware setup
-export const saveStateMiddleware = (store) => (next) => (action) => {
-    console.log(store)
-};
+  name: "user",
+  initialState: getInitialUserState(),
+  reducers: {
+    // this sets the user
+    userInfo: (state, action) => {
+      // state.token = action.payload
+      // state.isLoggedIn = true
+      // localStorage.setItem('user',JSON.stringify(state.user))
+      console.log(action.payload);
+    },
+    login:  (state, action) => {
+        state.token = action.payload
+        state.isLoggedIn = true
+        localStorage.setItem('user',JSON.stringify({isLoggedIn: state.isLoggedIn,token:state.token}))
+        console.log(action.payload,'hety');
+      },
+    signUp: (state, action) => {
+        console.log(action.payload)
+      state.token = action.payload
+    //   state.id = action.payload.id
+     
+      state.isLoggedIn = true
+      localStorage.setItem('user',JSON.stringify({isLoggedIn: state.isLoggedIn,token:state.token}))
+      
+      return state
+      
+    },
+    editUser:(state,action) => {
+        console.log(action)
+    },
+    logout: (state) => {
+        // Clear local storage
+
+        localStorage.clear();
+        console.log('Item removed from local storage');
+
+        // Reset state
+        state.isLoggedIn = false, // Default to not logged in if no data is found
+        state.token = null,
+
+        console.log('User state reset');
+        return state
+    },
+  },
+});
 
 
 // Action creators are generated for each case reducer function
-export const { userInfo } = userSlice.actions
+export const { userInfo, signUp,logout,editUser,login } = userSlice.actions;
 
-export default userSlice.reducer
+export default userSlice.reducer;

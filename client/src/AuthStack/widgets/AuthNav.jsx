@@ -1,31 +1,44 @@
-import { Dialog, Transition } from '@headlessui/react'
-import { Fragment, useState,React } from 'react'
-import { useNavigate } from "react-router-dom";
-function NavBar({type}) {
+import { Dialog, Transition } from "@headlessui/react";
+import { Fragment, useState, React } from "react";
+import { useNavigate, useParams} from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logout } from "../../Redux/UserSlice";
+
+function AuthBar() {
   const navigate = useNavigate();
-  let [isOpen, setIsOpen] = useState(false)
+  const dispatch = useDispatch();
+  let [isOpen, setIsOpen] = useState(false);
 
   function closeModal() {
-    setIsOpen(false)
+    setIsOpen(false);
   }
 
   function openModal() {
-    setIsOpen(true)
+    setIsOpen(true);
   }
 
-  
   return (
     <>
-      <div className='bottom-0 fixed' >
+      <div className="bottom-0 fixed">
         <button
           type="button"
           onClick={openModal}
           className="rounded-md bg-black bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
-</svg>
-
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"
+            />
+          </svg>
         </button>
       </div>
 
@@ -62,26 +75,49 @@ function NavBar({type}) {
                     Navigate
                   </Dialog.Title>
                   <div className="mt-2">
-                    {type === 'auth'? <><a onClick={()=>{navigate('/')}} class="dropdown-item text-sm">Home</a>
-            <a onClick={()=>{navigate('/login')}} tabIndex="-1" class="dropdown-item text-sm">
-              Login
-            </a>
-            <a onClick={()=>{navigate('/register')}} tabIndex="-1" class="dropdown-item text-sm">
-              Register
-            </a></>:<><a onClick={()=>{navigate('/home/:id')}} class="dropdown-item text-sm">Home</a>
-            <a onClick={()=>{navigate('/profile/:id')}} tabIndex="-1" class="dropdown-item text-sm">
-              Profile
-            </a>
-            <a onClick={()=>{navigate('/search/:id')}} tabIndex="-1" class="dropdown-item text-sm">
-              Search
-            </a>
-            <a onClick={()=>{navigate('/logout')}} tabIndex="-1" class="dropdown-item text-sm">
-              Logout
-            </a></>}
-                  
+                    <a
+                      onClick={() => {
+                        navigate("/");
+                        closeModal();
+                      }}
+                      class="dropdown-item text-sm"
+                    >
+                      Home
+                    </a>
+                    <a
+                      onClick={() => {
+                        navigate("/login");
+                        closeModal();
+                      }}
+                      tabIndex="-1"
+                      class="dropdown-item text-sm"
+                    >
+                      Login
+                    </a>
+                    <a
+                      onClick={() => {
+                        navigate("/register");
+                        closeModal();
+                      }}
+                      tabIndex="-1"
+                      class="dropdown-item text-sm"
+                    >
+                      Register
+                    </a>
+                    
                   </div>
 
                   <div className="mt-4">
+                  <button
+                      type="button"
+                      
+                      onClick={()=>{
+                        dispatch(logout());
+                        closeModal();
+                      }}
+                    >
+                      Refresh
+                    </button>
                     <button
                       type="button"
                       className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
@@ -97,8 +133,7 @@ function NavBar({type}) {
         </Dialog>
       </Transition>
     </>
-         
   );
 }
 
-export default NavBar;
+export default AuthBar;
