@@ -6,8 +6,8 @@ const cpController = require('../controllers/cpController')
 const generalMiddleWare = require('../middleware/authMiddle')
 
 const signUpMiddle = require('../middleware/signUpMiddle')
-const multer = require('multer');
-const upload = multer({ dest: 'uploads/' });
+// const multer = require('multer');
+// const upload = multer({ dest: 'uploads/' });
 
 
 
