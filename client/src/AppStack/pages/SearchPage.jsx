@@ -55,7 +55,7 @@ function SearchPage() {
       // Your asynchronous code here
       try {
         
-        const response = await axios.get(`https://fp-server-ox4k.onrender.com:5000/cp/users`);
+        const response = await axios.get(`https://fp-server-ox4k.onrender.com/cp/users`);
         setUserData(response.data);
         // Process the data or update state here
       } catch (error) {

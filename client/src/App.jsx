@@ -17,7 +17,7 @@ function App() {
  
   useEffect(() => {
     async function getNews(){
-      let data = await axios.get(process.env.SERVER)
+      let data = await axios.get('https://fp-server-ox4k.onrender.com')
       setNews(data.data.message)
     }
     async function getUser() {

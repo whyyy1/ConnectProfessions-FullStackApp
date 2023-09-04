@@ -29,7 +29,7 @@ function LoginPage() {
         // Simulating a login process
         if(loginForm.email !== "" && loginForm.password){
             try{
-                const loginData = await axios.post(`${process.env.SERVER}/cp/login`,loginForm)
+                const loginData = await axios.post(`https://fp-server-ox4k.onrender.com/cp/login`,loginForm)
                 console.log(loginData.data)
                 dispatch(login(loginData.data.message))
                 navigate(`/home/${loginData.data.id}`)
