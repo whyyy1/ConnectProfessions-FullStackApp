@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const cloudinary = require('cloudinary').v2;
+// const cloudinary = require('cloudinary').v2;
 require('dotenv').config();
 
 // Define a function to configure and connect to MongoDB
@@ -13,11 +13,11 @@ const mongoConfig = async () => {
 };
 
 // Configure Cloudinary with your credentials
-cloudinary.config({
-    cloud_name: process.env.CLOUD_NAME,
-    api_key: process.env.API_KEY,
-    api_secret: process.env.API_SECRET
-});
+// cloudinary.config({
+//     cloud_name: process.env.CLOUD_NAME,
+//     api_key: process.env.API_KEY,
+//     api_secret: process.env.API_SECRET
+// });
 
 // Export both the MongoDB configuration and Cloudinary configuration
-module.exports = { mongoConfig,cloudinary };
+module.exports = { mongoConfig};
