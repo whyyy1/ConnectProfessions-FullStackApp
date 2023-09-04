@@ -6,7 +6,7 @@ const methodOverride = require('method-override')
 const {mongoConfig}  = require('./config')
 const newsData = require('./data/newsData')
 mongoConfig()
-const multer = require('multer');
+// const multer = require('multer');
 
 // // Set up multer with a destination folder and file name customization
 // const storage = multer.diskStorage({
