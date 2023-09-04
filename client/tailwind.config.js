@@ -19,6 +19,6 @@ module.exports = withMT({
       }
     },
   },
-  plugins: [require("rippleui"),require("daisyui")],
+  plugins: [require("rippleui")],
 }
 )
