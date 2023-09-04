@@ -7,6 +7,7 @@ import LoadingPage from '../widgets/LoadingPage';
 import LogoutPage from './pages/Logout';
 import ProfilePageEdit from './pages/ProfileEdit';
 import Profile from './pages/Profile';
+import ProfileView from './pages/ProfileView';
 
 
 function AppStack({user,news,setUser}) {
@@ -19,8 +20,9 @@ function AppStack({user,news,setUser}) {
         
       <Route path={`/home/${user.id}`} element={<HomePage news={news} />} />
       <Route path={`/profile/${user.id}`} element={<Profile user={user} />} />
+      <Route path={`/profile/view/:id`} element={<ProfileView  />} />
       <Route path={`/profile/edit/${user.id}`} element={<ProfilePageEdit user={user} setUser={setUser} />} />
-      <Route path={`/search/${user.id}`} element={<SearchPage />} />
+      <Route path={`/search/${user.id}`} element={<SearchPage id={user.id}/>} />
       <Route path={`/logout`} element={<LogoutPage />} />
       <Route path={`/loading`} element={<LoadingPage user={user}/>} />
       <Route path="/*" element={<Navigate to={`/home/${user.id}`} />} />

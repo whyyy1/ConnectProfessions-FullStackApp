@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from "react";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { PencilIcon, UserPlusIcon } from "@heroicons/react/24/solid";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import {
   Card,
   CardHeader,
@@ -11,26 +13,60 @@ import {
   Chip,
   CardFooter,
   Tabs,
-  
   Tab,
   Avatar,
   IconButton,
   Tooltip,
 } from "@material-tailwind/react";
 
-
-
 function SearchPage() {
+  const [userData, setUserData] = useState([]);
+  const [filterState, setFilterState] = useState(userData);
+  const [searchUser, setSearchUser] = useState("");
 
-    const [searchUser,setSearchUser] = useState('')
+  const tabs = ["Name", "Course"];
 
-    function handleChange(event) {
+  const navigate = useNavigate();
 
+  function handleChange(event) {
 
-        setSearchUser( event.target.value )
-        console.log(searchUser)
+      setSearchUser(event.target.value);
+      let filterUsers = userData.filter((user) => {
+        return (
+          user.firstName.includes(event.target.value) ||
+          user.lastName.includes(event.target.value)
+        );
+      });
+      
+      if (event.target.value.length < 2) {
+        setFilterState(userData);
+      } else {
+        setFilterState(filterUsers);
       }
 
+      
+    }
+  
+
+  useEffect(() => {
+    const getUsers = async () => {
+      // Your asynchronous code here
+      try {
+        const response = await axios.get("http://localhost:5000/cp/users");
+        setUserData(response.data);
+        // Process the data or update state here
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+
+    getUsers(); // Call the async function
+
+    // // You can also return a cleanup function if needed
+    // return () => {
+    //   // Cleanup code
+    // };
+  }, []);
   return (
     <Card className="h-full w-full">
       <CardHeader floated={false} shadow={false} className="rounded-none">
@@ -55,14 +91,13 @@ function SearchPage() {
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
           <Tabs value="all" className="w-full md:w-max">
             {/* <TabsHeader> */}
-              {/* tabs */}
+            {/* tabs */}
             {/* </TabsHeader> */}
           </Tabs>
           <div className="w-full md:w-72">
             <Input
               label="Search"
               value={searchUser}
-              
               icon={<MagnifyingGlassIcon className="h-5 w-5" />}
               onChange={handleChange}
             />
@@ -73,11 +108,37 @@ function SearchPage() {
         <table className="mt-4 w-full min-w-max table-auto text-left">
           <thead>
             <tr>
-              {/* HEAD user info */}
+              <div className="flex justify-evenly">
+                {tabs.map((tab, index) => {
+                  return <h1>{tab}</h1>;
+                })}
+              </div>
             </tr>
           </thead>
           <tbody>
-            {/* users  */}
+            <div className="flex flex-col  ">
+              {}
+              {filterState.map((user) => {
+                console.log(user._id);
+                return (
+                  <button
+                    className="hover:cursor-pointer flex justify-evenly"
+                    id={user._id}
+                    onClick={(e) => {
+                      console.log(e.target.id);
+                      navigate(`/profile/view/${e.target.id}`, {
+                        state: { user },
+                      });
+                    }}
+                  >
+                    <h1 id={user._id}>
+                      {user.firstName} {user.lastName}
+                    </h1>
+                    <h1 id={user._id}>{user.course}</h1>
+                  </button>
+                );
+              })}
+            </div>
           </tbody>
         </table>
       </CardBody>
@@ -98,4 +159,4 @@ function SearchPage() {
   );
 }
 
-export default SearchPage
+export default SearchPage;

@@ -17,10 +17,10 @@ const upload = multer({ dest: 'uploads/' });
 
 
 router.get('/home/:id',generalMiddleWare,cpController.index)
-
+router.get('/users',generalMiddleWare,cpController.index)
 router.post('/register',signUpMiddle,cpController.create)
 router.post('/login',signUpMiddle,cpController.loginData)
-router.put('/profile/edit/:id',upload.single('resume'),cpController.update)
+router.put('/profile/edit/:id',cpController.update)
 
 
 module.exports = router

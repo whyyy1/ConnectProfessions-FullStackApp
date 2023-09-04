@@ -44,7 +44,7 @@ function App() {
     <ChakraProvider>
       <Router>
         
-        {currentUser.isLoggedIn ? <><AppStack user={user} news={news} setUser={setUser} /><AppBar type={'app'} id={user.id} /></> :<> <AuthStack  /><AuthBar type={'auth'} /></> }
+        {currentUser.isLoggedIn ? <><AppStack user={user} news={news} setUser={setUser} /><AppBar name={user.firstName} type={'app'} id={user.id} /></> :<> <AuthStack  /><AuthBar type={'auth'} /></> }
         
         
         </Router>

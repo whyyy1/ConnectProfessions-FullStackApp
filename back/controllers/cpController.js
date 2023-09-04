@@ -5,7 +5,17 @@ const axios = require("axios");
 
 const {cloudinary}  = require('../config')
 module.exports.index = async (req, res) => {
-  console.log("Hey you made it ");
+    try{
+        const usersData = await User.find().select('-password');
+    
+        console.log(usersData.length)
+    res.json(usersData)
+//   console.log("Hey you made it ",users);
+
+    }catch(e){
+        res.json({error:e.message})
+    }
+    
 };
 
 module.exports.update = async (req, res) => {
@@ -118,26 +128,26 @@ module.exports.create = async (req, res) => {
     });
 
     //save user
-    // await newUser.save();
+    await newUser.save();
     // console.log(newUser, "here");
-    // const payload = {
-    //   id: newUser._id,
-    //   firstName: newUser.firstName,
-    //   lastName: newUser.lastName,
-    //   email: newUser.email,
-    //   type: newUser.type,
-    //   resume: newUser.resume,
-    //   course: newUser.course,
-    //   about: newUser.about,
-    //   github: newUser.github,
-    //   linkedIn: newUser.linkedIn,
-    // };
-    // console.log("hey he at the end of the creation");
-    // const token = jwt.sign(payload, process.env.THANG, {
-    //   expiresIn: process.env.TIME_TOKEN,
-    // });
+    const payload = {
+      id: newUser._id,
+      firstName: newUser.firstName,
+      lastName: newUser.lastName,
+      email: newUser.email,
+      type: newUser.type,
+      resume: newUser.resume,
+      course: newUser.course,
+      about: newUser.about,
+      github: newUser.github,
+      linkedIn: newUser.linkedIn,
+    };
+    console.log("hey he at the end of the creation");
+    const token = jwt.sign(payload, process.env.THANG, {
+      expiresIn: process.env.TIME_TOKEN,
+    });
 
-    // res.status(200).json({ message: token, id: payload.id });
+    res.status(200).json({ message: token, id: payload.id });
   } catch (e) {
     res.json({ error: e.message });
   }
