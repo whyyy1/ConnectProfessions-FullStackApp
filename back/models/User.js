@@ -9,62 +9,58 @@ const userSchema = new mongoose.Schema({
     firstName: {
         type: String,
         required: false,
-        
     },
     lastName: {
         type: String,
         required: false,
-       
     },
     email: {
         type: String,
         required: false,
         unique: true,
-       
     },
     password: {
         type: String,
         required: false,
-        
- 
     },
     type: {
         type: String,
         required: false,
-       
+    },
+    profileImage: {
+        type: String,
+        
+        
     },
     resume: {
-        type: String,
-        default:'n/a',
-        required: false,
-       
+        data: Buffer,
+        contentType: String,
+        
+        
     },
     about: {
         type: String,
-        default:'n/a',
+        default: 'n/a',
         required: false,
-       
     },
     course: {
         type: String,
-        default:'n/a',
+        default: 'n/a',
         required: false,
-       
     },
     github: {
         type: String,
-        default:'n/a',
+        default: 'n/a',
         required: false,
-       
     },
     linkedIn: {
         type: String,
-        default:'n/a',
+        default: 'n/a',
         required: false,
-       
     },
-
 });
+
+
 
 // 1st argument is the collection, 2nd is the Schema (blueprint) 
 const User = mongoose.model('Users', userSchema)

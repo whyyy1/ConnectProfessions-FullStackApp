@@ -11,7 +11,13 @@ module.exports = withMT({
     "./*/@material-tailwind/react/theme/components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'mainGif': "url('/walking.gif')",
+        'different': "url('/different.gif')"
+        
+      }
+    },
   },
   plugins: [require("rippleui"),require("daisyui")],
 }

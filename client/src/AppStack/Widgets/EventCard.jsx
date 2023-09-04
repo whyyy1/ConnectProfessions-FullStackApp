@@ -10,13 +10,14 @@ function EventCard({name,type,time,location,image}) {
   return (
     <Card
       shadow={false}
-      className=" grid h-[40rem]  items-end justify-center overflow-hidden text-center"
+      className=" grid  items-end justify-center overflow-hidden text-center"
     >
       <CardHeader
+      style={{ backgroundImage: `url(${image})` }}
         floated={false}
         shadow={false}
         color="transparent"
-        className={`absolute inset-0 m-0 h-full w-full rounded-none bg-[url(${image})] bg-cover bg-center`}
+        className={`absolute inset-0 m-0 h-full w-full rounded-nonebg-cover bg-center`}
 
       >
         <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-t from-black/80 via-black/50" />

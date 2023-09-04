@@ -9,7 +9,7 @@ import ProfilePageEdit from './pages/ProfileEdit';
 import Profile from './pages/Profile';
 
 
-function AppStack({user,news}) {
+function AppStack({user,news,setUser}) {
     
 
     console.log(user)
@@ -19,7 +19,7 @@ function AppStack({user,news}) {
         
       <Route path={`/home/${user.id}`} element={<HomePage news={news} />} />
       <Route path={`/profile/${user.id}`} element={<Profile user={user} />} />
-      <Route path={`/profile/edit/${user.id}`} element={<ProfilePageEdit user={user} />} />
+      <Route path={`/profile/edit/${user.id}`} element={<ProfilePageEdit user={user} setUser={setUser} />} />
       <Route path={`/search/${user.id}`} element={<SearchPage />} />
       <Route path={`/logout`} element={<LogoutPage />} />
       <Route path={`/loading`} element={<LoadingPage user={user}/>} />

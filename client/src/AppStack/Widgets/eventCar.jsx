@@ -114,7 +114,7 @@ function EventCar() {
 
   return (
     
-    <div className="overflow-hidden h-96 overflow-y-scroll">
+    <div className="overflow-hidden h-96 w-full   overflow-y-scroll">
       {events.map((event, index) => (
           <div key={index} className="m-5 ">
             <EventCard
