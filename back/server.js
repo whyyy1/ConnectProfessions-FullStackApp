@@ -29,12 +29,7 @@ app.use(cors())
 app.use(methodOverride('_method'))
 app.use(express.json())
 app.use(express.static('public'))
-// app.use('/cp',fileUpload({
-//     useTempFiles: true,
-//     safeFileNames: true,
-//     preserveExtension: true,
-//     tempFileDir: `${__dirname}/public/files/temp`
-//   }), cp)
+app.use('/cp', cp)
 
 app.get('/',(req,res) => {
     // console.log('hey',newsData)
