@@ -24,7 +24,7 @@ function SearchPage() {
   const [filterState, setFilterState] = useState(userData);
   const [searchUser, setSearchUser] = useState("");
 
-  const tabs = ["Name", "Course"];
+  const tabs = ["Name", "Course","Email"];
 
   const navigate = useNavigate();
 
@@ -68,33 +68,27 @@ function SearchPage() {
     // };
   }, []);
   return (
+    <div className="flex flex-col">
     <Card className="h-full w-full">
       <CardHeader floated={false} shadow={false} className="rounded-none">
         <div className="mb-8 flex items-center justify-between gap-8">
           <div>
-            <Typography variant="h5" color="blue-gray">
+            <Typography variant="h5" color="blue-gray" className="mt-1 font-bold text-xl">
               Members list
             </Typography>
-            <Typography color="gray" className="mt-1 font-normal">
-              See information about all members
+            <Typography color="gray" className="mt-1 font-normal text-xl">
+              See information about all members - Showing 10 users by default
             </Typography>
           </div>
-          <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
-            <Button variant="outlined" size="sm">
-              view all
-            </Button>
-            <Button className="flex items-center gap-3" size="sm">
-              <UserPlusIcon strokeWidth={2} className="h-4 w-4" /> Add member
-            </Button>
-          </div>
+          
         </div>
-        <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
+        <div className="flex flex-col items-center justify-between gap-4 ">
           <Tabs value="all" className="w-full md:w-max">
             {/* <TabsHeader> */}
             {/* tabs */}
             {/* </TabsHeader> */}
           </Tabs>
-          <div className="w-full md:w-72">
+          <div className="w-1/2 ">
             <Input
               label="Search"
               value={searchUser}
@@ -108,21 +102,22 @@ function SearchPage() {
         <table className="mt-4 w-full min-w-max table-auto text-left">
           <thead>
             <tr>
-              <div className="flex justify-evenly">
+              <div className="flex  ">
                 {tabs.map((tab, index) => {
-                  return <h1>{tab}</h1>;
+                  return <h1 className="text-lg lg:text-xl font-bold">{tab}/</h1>;
                 })}
               </div>
             </tr>
           </thead>
           <tbody>
-            <div className="flex flex-col  ">
-              {}
-              {filterState.map((user) => {
-                console.log(user._id);
+            <div className="flex justify-evenly flex-col p-5 text-center ">
+              
+              {filterState.slice(0,10).map((user,index) => {
+                
+                
                 return (
                   <button
-                    className="hover:cursor-pointer flex justify-evenly"
+                    className="bg-blue-300 hover:cursor-pointer flex justify-evenly hover:bg-yellow-200 bg-opacity-20 m-4  p-5"
                     id={user._id}
                     onClick={(e) => {
                       console.log(e.target.id);
@@ -131,19 +126,32 @@ function SearchPage() {
                       });
                     }}
                   >
-                    <h1 id={user._id}>
-                      {user.firstName} {user.lastName}
+                    <div className="  flex flex-col  ">
+                    <h1 className='text-lg lg:text-2xl'id={user._id}>
+                      {user.firstName.toUpperCase()} 
                     </h1>
-                    <h1 id={user._id}>{user.course}</h1>
+                    <h1 className='text-lg lg:text-2xl'id={user._id}>
+                       {user.lastName.toUpperCase()}
+                    </h1>
+                    </div>
+                    <div className="  flex flex-col ">
+                    {user.course === ''?<h1 className='text-lg lg:text-2xl' id={user._id}>n/a</h1>:<h1 className='text-lg lg:text-2xl' id={user._id}>{user.course}</h1> }
+                    </div>
+                    <div className=" flex flex-col ">
+                    <h1 className='text-lg lg:text-2xl' id={user._id}>{user.email}</h1>
+                    </div>
+                    <div className="divider"></div> 
+                    
                   </button>
                 );
+                
               })}
             </div>
           </tbody>
         </table>
       </CardBody>
       <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4">
-        <Typography variant="small" color="blue-gray" className="font-normal">
+        {/* <Typography variant="small" color="blue-gray" className="font-normal">
           Page 1 of 10
         </Typography>
         <div className="flex gap-2">
@@ -153,9 +161,16 @@ function SearchPage() {
           <Button variant="outlined" size="sm">
             Next
           </Button>
-        </div>
+        </div> */}
+        
+            <Button onClick={()=>setFilterState(userData)}variant="outlined" size="sm">
+              view all
+            </Button>
+            
+          
       </CardFooter>
     </Card>
+    </div>
   );
 }
 

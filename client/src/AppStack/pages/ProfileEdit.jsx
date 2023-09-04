@@ -35,7 +35,7 @@ function ProfilePageEdit({ user, setUser }) {
 
   return (
     <div className="flex flex-col items-center justify-center mt-44 ">
-      <h1 className='text-4xl '>Hello <strong>{user.firstName}</strong>!</h1>
+      <h1 className='text-4xl '>Hello <strong>{updateForm.firstName}</strong>!</h1>
       <div className="rounded-xl flex flex-wrap justify-center">
         {Object.keys(updateForm).map((d,index) => (
             <div key={d} className='flex justify-evenly m-10'>

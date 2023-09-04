@@ -3,7 +3,7 @@ import axios from "axios";
 import EventCar from "../Widgets/eventCar";
 function HomePage({ news }) {
   return (
-    <div className="flex flex-col  items-center h-screen bg-gradient-to-b from-orange-300 via-yellow-300 to-yellow-100">
+    <div className="flex flex-col  items-center h-full bg-gradient-to-b from-orange-300 via-yellow-300 to-yellow-100">
         <div className="bg-yellow-600 bg-opacity-5 rounded-xl p-20 mt-10">
       <h1 className="text-2xl text-black text-center font-bold bg-yellow-600 bg-opacity-10 rounded-xl mb-20 ">
         Welcome to the main feed!
@@ -12,11 +12,11 @@ function HomePage({ news }) {
       <div>
           
         </div>
-        <div className="flex">
+        <div className=" lg:flex">
             
   {/* news */}
-  <div className="flex flex-col w-1/2 items-center">
-  <h1 className="text-2xl text-black text-center font-bold bg-yellow-600 bg-opacity-10 rounded-xl w-1/3">Current News</h1>
+  <div className="flex flex-col lg:w-1/2 items-center">
+  <h1 className="text-2xl text-black text-center font-bold bg-yellow-600 bg-opacity-10 rounded-xl w-1/3 ">Current News</h1>
   {news.length > 0 ? (
     
     <div className="flex flex-col pl-5  items-center bg-black bg-opacity-5 h-96 overflow-hidden overflow-y-scroll rounded-xl ">
@@ -45,7 +45,7 @@ function HomePage({ news }) {
   )}</div>
 
   {/* events */}
-  <div className="flex flex-col w-1/2  items-center">
+  <div className="flex flex-col lg:w-1/2  items-center">
     <h1 className="text-2xl text-black text-center font-bold bg-yellow-600 bg-opacity-10 rounded-xl w-1/3">Current Events</h1>
   <div className="flex flex-col pl-5  items-center bg-black bg-opacity-5 h-96 overflow-hidden overflow-y-scroll rounded-xl ">
     <EventCar />
