@@ -42,6 +42,6 @@ app.get('/',(req,res) => {
 })
 
 
-app.listen(process.env.PORT,()=>{
-    console.log('listen in on:',process.env.URL_+ process.env.PORT)
+app.listen(process.env.URL_,()=>{
+    console.log('listen in on:',process.env.URL_)
 })

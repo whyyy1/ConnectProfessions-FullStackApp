@@ -17,7 +17,7 @@ function App() {
  
   useEffect(() => {
     async function getNews(){
-      let data = await axios.get('http://localhost:5000/')
+      let data = await axios.get(process.env.SERVER)
       setNews(data.data.message)
     }
     async function getUser() {

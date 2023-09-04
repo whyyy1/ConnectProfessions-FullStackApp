@@ -24,7 +24,7 @@ function ProfilePageEdit({ user, setUser }) {
   async function handleUpdate(e) {
     e.preventDefault();
     console.log(user);
-    let response = await axios.put(`http://localhost:5000/cp/profile/edit/${user.id}`, updateForm);
+    let response = await axios.put(`${process.env.SERVER}/cp/profile/edit/${user.id}`, updateForm);
     setUser(response.data.message)
     navigate(`/profile/${user.id}`)
   }

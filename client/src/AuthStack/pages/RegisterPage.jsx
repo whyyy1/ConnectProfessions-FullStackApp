@@ -37,7 +37,7 @@ function RegisterForm() {
   async function handleRegister(e) {
     e.preventDefault()
     console.log(regForm);
-    const response = await axios.post("http://localhost:5000/cp/register", regForm);
+    const response = await axios.post(`${process.env.SERVER}/cp/register`, regForm);
     console.log(response.data)
     dispatch(signUp(response.data.message))
     
