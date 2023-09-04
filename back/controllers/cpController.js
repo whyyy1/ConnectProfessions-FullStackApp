@@ -17,47 +17,59 @@ module.exports.update = async (req, res) => {
         
       Object.entries(req.body).forEach(([key, value]) => {
         if (value !== undefined && value !== null && value !== "") {
-            if (key === 'resume') {
-                console.log(req.body.resume, req.files);
+            // if (key === 'resume') {
+            //     console.log(req.body.resume, req.files);
       
-                // Upload the resume file to Cloudinary
-                cloudinary.uploader.upload(value, (err, fileResult) => {
-                  if (err) {
-                    console.error(err);
-                  } else {
-                    // Update the user's resume URL in the updateObject
-                    updateObject.resume = fileResult.secure_url;
+            //     // Upload the resume file to Cloudinary
+            //     cloudinary.uploader.upload(value, (err, fileResult) => {
+            //       if (err) {
+            //         console.error(err);
+            //       } else {
+            //         // Update the user's resume URL in the updateObject
+            //         updateObject.resume = fileResult.secure_url;
       
-                    // Continue with other updates or save the profile here if needed
-                  }
-                });
-              }
-              if (key === 'profileImage') {
-                console.log(req.body.profileImage);
+            //         // Continue with other updates or save the profile here if needed
+            //       }
+            //     });
+            //   }
+            //   if (key === 'profileImage') {
+            //     console.log(req.body.profileImage);
       
-                // Upload the profile image to Cloudinary
-                cloudinary.uploader.upload(value, (err, imageResult) => {
-                  if (err) {
-                    console.error(err);
-                  } else {
-                    // Update the user's profile image URL in the updateObject
-                    updateObject.profileImage = imageResult.secure_url;
+            //     // Upload the profile image to Cloudinary
+            //     cloudinary.uploader.upload(value, (err, imageResult) => {
+            //       if (err) {
+            //         console.error(err);
+            //       } else {
+            //         // Update the user's profile image URL in the updateObject
+            //         updateObject.profileImage = imageResult.secure_url;
       
-                    // Continue with other updates or save the profile here if needed
-                  }
-                });
-              }
+            //         // Continue with other updates or save the profile here if needed
+            //       }
+            //     });
+            //   }
           updateObject[key] = value;
         }
       });
   
-    //   const updatedProfile = await User.findByIdAndUpdate(
-    //     req.params.id,
-    //     { $set: updateObject },
-    //     { new: true }
-    //   );
-    //   console.log(updatedProfile);
-    //   res.json(updatedProfile);
+      const updatedProfile = await User.findByIdAndUpdate(
+        req.params.id,
+        { $set: updateObject },
+        { new: true }
+      );
+      const payload = {
+      id: updatedProfile._id,
+      firstName: updatedProfile.firstName,
+      lastName: updatedProfile.lastName,
+      email: updatedProfile.email,
+      type: updatedProfile.type,
+      resume: updatedProfile.resume,
+      course: updatedProfile.course,
+      about: updatedProfile.about,
+      github: updatedProfile.github,
+      linkedIn: updatedProfile.linkedIn,
+    };
+      console.log(updatedProfile);
+      res.json({message:payload});
     } catch (e) {
       console.log(e.message);
       res.status(500).json({ error: "Internal Server Error" });

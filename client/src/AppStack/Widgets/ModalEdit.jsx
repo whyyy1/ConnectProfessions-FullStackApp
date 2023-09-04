@@ -29,9 +29,10 @@ function ModalEdit({ type, data,editChange,id}) {
       <button
         type="button"
         onClick={openModal}
-        className="rounded-md bg-black bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+        className="hover:bg-red-600 rounded-lg  bg-black bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
       >
-        edit
+        <label className=" text-2xl">{id.toUpperCase()}</label>
+            <p className="font-bold text-2xl">{data}</p>
       </button>
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
@@ -48,7 +49,7 @@ function ModalEdit({ type, data,editChange,id}) {
           </Transition.Child>
 
           <div className="fixed inset-0 overflow-y-auto">
-            <div className="flex h-full items-center  p-4 text-center">
+            <div className="flex h-full items-center  p-4 text-center ">
               <Transition.Child
                 as={Fragment}
                 enter="ease-out duration-300"
@@ -58,7 +59,7 @@ function ModalEdit({ type, data,editChange,id}) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className=" w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6  align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="h3"
                     className="text-lg font-medium leading-6 text-gray-900"
@@ -78,7 +79,7 @@ function ModalEdit({ type, data,editChange,id}) {
                         <textarea
                           type={type}
                           placeholder={data}
-                          
+                          maxLength={40}
                           onChange={handleChange}
                           value={editInput}
                         ></textarea>

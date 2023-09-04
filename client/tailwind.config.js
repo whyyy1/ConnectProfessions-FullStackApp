@@ -14,7 +14,7 @@ module.exports = withMT({
     extend: {
       backgroundImage: {
         'mainGif': "url('/walking.gif')",
-        'different': "url('/different.gif')"
+        'different': "url('/vertical1.gif')"
         
       }
     },

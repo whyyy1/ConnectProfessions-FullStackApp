@@ -22,7 +22,7 @@ function EventCard({name,type,time,location,image}) {
       >
         <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-t from-black/80 via-black/50" />
       </CardHeader>
-      <CardBody className="relative py-14 px-6 md:px-12">
+      <CardBody className="relative py-14 px-6 md:px-12 bg-black bg-opacity-20">
         <Typography
           variant="h2"
           color="white"
