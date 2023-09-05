@@ -36,6 +36,7 @@ const userSchema = new mongoose.Schema({
     resume: {
         data: Buffer,
         contentType: String,
+        default:'https://s3.resume.io/cdn-cgi/image/width=380,format=auto/uploads/local_template_image/image/481/persistent-resource/london-resume-templates.jpg'
         
         
     },

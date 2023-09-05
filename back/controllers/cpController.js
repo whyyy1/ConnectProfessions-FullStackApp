@@ -121,7 +121,7 @@ module.exports.create = async (req, res) => {
       password: encryptPassword,
       type,
       profileImage,
-      resume: resume.default,
+      resume,
       course,
       about,
       github,

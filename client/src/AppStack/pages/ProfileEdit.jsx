@@ -44,7 +44,7 @@ function ProfilePageEdit({ user, setUser }) {
           <div key={d} className="flex justify-evenly m-10">
             
             {d === 'resume' || d === 'profileImage' ? (
-              <>{console.log(updateForm)}</>
+              <>{console.log(updateForm.resume)}</>
               // <ModalEdit
               //   type={'file'}
               //   data-max-size="2048"
