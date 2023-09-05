@@ -85,12 +85,11 @@ function ModalEdit({ type, data,editChange,id}) {
                         ></textarea>
                       ) : (
                         <input
-                          type={type}
-                          placeholder={data}
-                          
-                          onChange={handleChange}
-                          value={editInput}
-                        />
+                        type={type}
+                        placeholder={editInput} // Use editInput as the initial value
+                        onChange={handleChange}
+                        value={editInput}
+                      />
                       )}
                       </div>
                       <button

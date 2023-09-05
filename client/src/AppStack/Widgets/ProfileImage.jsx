@@ -11,7 +11,9 @@ import {
     return (
       <Card className="m-5 ">
         <CardHeader floated={false} className="h-80">
-          <img src={user.image} alt="profile-picture" />
+          <div class='flex justify-center'>
+          <img src={user.image} alt="profile-picture"  />
+          </div>
         </CardHeader>
         <CardBody className="text-center">
           <Typography variant="h4" color="blue-gray" className="mb-2 text-md md:text-xl">

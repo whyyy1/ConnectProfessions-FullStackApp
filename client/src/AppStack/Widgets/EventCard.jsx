@@ -9,6 +9,7 @@ import {
 function EventCard({name,type,time,location,image}) {
   return (
     <Card
+    
       shadow={false}
       className=" grid  items-end justify-center overflow-hidden text-center"
     >
