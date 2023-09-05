@@ -61,9 +61,9 @@ function RegisterForm() {
 
 
   return (
-    <div className="flex flex-wrap justify-evenly bg-slate-900">
-        <img src={sideImage} className="w-1/3 p-4"/>
-        <Card color="white" shadow={false} className="w-1/3 p-4 text-center items-center bg-blue-300">
+    <div className="flex flex-wrap justify-evenly bg-slate-900 h-full">
+        <img src={sideImage} className="hidden md:block md:w-1/3 p-4"/>
+        <Card color="white" shadow={false} className="md:w-1/3 p-4 text-center items-center bg-blue-300">
         <div className="mt-10">
             <Typography variant="h4" className="text-2xl">
             Connect Professions
@@ -71,7 +71,7 @@ function RegisterForm() {
             <Typography variant="h4" color="blue-gray">
             Sign Up
             </Typography>
-            <Typography color="gray" className="mt-1 font-normal">
+            <Typography color="purple" className="mt-1 font-bold">
             Enter your details to register. To Begin interacting with the Activate
             Community
             </Typography>
@@ -161,7 +161,7 @@ function RegisterForm() {
             </Typography>
         </form>
         </Card>
-        <img src={sideImage} className="w-1/3 p-4"/>
+        <img src={sideImage} className="md:w-1/3 p-4"/>
     </div>
   );
 }

@@ -19,15 +19,15 @@ function HomePage({ news }) {
   <h1 className="text-2xl text-black text-center font-bold bg-yellow-600 bg-opacity-10 rounded-xl w-1/3 ">Current News</h1>
   {news.length > 0 ? (
     
-    <div className="flex flex-col pl-5  items-center bg-black bg-opacity-5 h-96 overflow-hidden overflow-y-scroll rounded-xl ">
+    <div className="flex flex-col pl-5 text-white items-center bg-black bg-opacity-5 h-96 overflow-hidden overflow-y-scroll rounded-xl m-5 md:m-0 ">
         
       {news.map((article) => {
         return (
           <div key={article.name} className=" pt-10 justify-between">
-            <div className="card bg-blue-600 m-5 text-primary-content">
+            <div className="card bg-blue-600 md:m-5 text-primary-content">
               <div className="card-body m-5 bg-black rounded-lg">
-                <h1 className="card-title">{article.news}</h1>
-                <h2>{article.date}</h2>
+                <h1 className="card-title text-xl font-bold">{article.news}</h1>
+                <h2 className="text-xl font-bold">{article.date}</h2>
                 <a href={article.link} className="card-actions hover:text-blue-700">
                   Learn More
                 </a>

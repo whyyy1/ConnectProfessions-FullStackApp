@@ -57,7 +57,7 @@ function LoginPage() {
   return (
     
     <div className="flex flex-wrap justify-evenly bg-slate-900">
-        <img src={sideImage} className="w-1/3 p-4"/>
+        <img src={sideImage} className="md:w-1/2 md:h-full p-4"/>
         <Card color="white" shadow={false} className=" h-screen text-center bg-violet-500 w-1/3 rounded-xl items-center justify-center">
             <div className="mt-10">
             <Typography variant="h4" className="text-5xl" >
@@ -66,7 +66,7 @@ function LoginPage() {
         {/* <Typography variant="h4" color="blue-gray">
             Login In
         </Typography> */}
-        <Typography  className="mt-1 font-bold text-yellow-400">
+        <Typography  className="mt-1 font-bold text-red-400">
             Login in user to acces your account.
         </Typography>
         </div>

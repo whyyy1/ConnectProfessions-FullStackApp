@@ -9,12 +9,12 @@ import {
    
   export function ProfileCard({user}) {
     return (
-      <Card className="m-5">
+      <Card className="m-5 ">
         <CardHeader floated={false} className="h-80">
           <img src={user.image} alt="profile-picture" />
         </CardHeader>
         <CardBody className="text-center">
-          <Typography variant="h4" color="blue-gray" className="mb-2">
+          <Typography variant="h4" color="blue-gray" className="mb-2 text-md md:text-xl">
             {user.name}
           </Typography>
           <Typography color="blue-gray" className="font-medium" textGradient>
@@ -29,6 +29,7 @@ import {
               variant="lead"
               color="blue"
               textGradient
+              className="mb-2 text-md md:text-xl"
             >
               {user.email}
             </Typography>
@@ -40,6 +41,7 @@ import {
               variant="lead"
               color="light-blue"
               textGradient
+              className="mb-2 text-md md:text-xl"
             >
               {user.github}
             </Typography>
@@ -51,6 +53,7 @@ import {
               variant="lead"
               color="purple"
               textGradient
+              className="mb-2 text-md md:text-xl"
             >
               {user.linkedIn}
             </Typography>

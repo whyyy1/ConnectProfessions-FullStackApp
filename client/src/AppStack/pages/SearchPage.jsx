@@ -113,14 +113,14 @@ function SearchPage() {
             </tr>
           </thead>
           <tbody>
-            <div className="flex justify-evenly flex-col p-5 text-center ">
+            <div className="flex justify-evenly flex-col md:p-10 text-center ">
               
               {filterState.slice(0,10).map((user,index) => {
                 
                 
                 return (
                   <button
-                    className="bg-blue-300 hover:cursor-pointer flex justify-evenly hover:bg-yellow-200 bg-opacity-20 m-4  p-5"
+                    className="w-11/12 bg-blue-300 hover:cursor-pointer flex justify-evenly hover:bg-yellow-200 bg-opacity-20 m-4  p-5"
                     id={user._id}
                     onClick={(e) => {
                       console.log(e.target.id);
