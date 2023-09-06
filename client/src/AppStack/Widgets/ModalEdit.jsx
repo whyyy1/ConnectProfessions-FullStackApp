@@ -1,27 +1,50 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState, React } from "react";
-function ModalEdit({ type, data,editChange,id}) {
+
+function ModalEdit({ typeUsed, data, editChange, id }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [editInput,setEditInput] = useState(data)
+  const [editInput, setEditInput] = useState(data);
+  const [selectedFile, setSelectedFile] = useState(null);
 
   function closeModal() {
     setIsOpen(false);
+    setSelectedFile(null); // Clear selected file when closing the modal
   }
 
   function openModal() {
     setIsOpen(true);
   }
+
   async function updateInput(e) {
     e.preventDefault();
-    editChange(id,editInput);
-    closeModal()
-        
+
+    if (selectedFile) {
+      // Handle file upload here (e.g., using Axios)
+      // You can access the selectedFile and upload it
+      // Make sure to handle the upload logic according to your requirements
+      // Once the upload is successful, update the state and call closeModal()
+      // Example:
+      // const formData = new FormData();
+      // formData.append("file", selectedFile);
+      // const response = await axios.post("/upload", formData);
+      // setEditInput(response.data.url);
+    } else {
+      // Handle other types (text, etc.)
+      editChange(id, editInput);
+    }
+
+    closeModal();
   }
 
   function handleChange(event) {
-    
-      setEditInput(event.target.value)
-    
+    if (typeUsed === "file") {
+      // Handle file input change
+      setSelectedFile('')
+      setSelectedFile(event.target.files[0]);
+    } else {
+      // Handle other input types (text, etc.)
+      setEditInput(event.target.value);
+    }
   }
 
   return (
@@ -32,7 +55,7 @@ function ModalEdit({ type, data,editChange,id}) {
         className="hover:bg-red-600 rounded-lg  bg-black bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
       >
         <label className=" text-2xl">{id.toUpperCase()}</label>
-            <p className="font-bold text-2xl">{data}</p>
+        <p className="font-bold text-2xl">{data}</p>
       </button>
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
@@ -77,19 +100,26 @@ function ModalEdit({ type, data,editChange,id}) {
                     <label className="text-lg font-bold">{id.toUpperCase()}</label>
                       {id === "about" ? (
                         <textarea
-                          type={type}
+                          type={typeUsed}
                           placeholder={data}
                           maxLength={40}
                           onChange={handleChange}
                           value={editInput}
                         ></textarea>
                       ) : (
+                        (id === 'resume' || id ==='profileImage')? <input
+                        type={'file'}
+                        placeholder={editInput} // Use editInput as the initial value
+                        onChange={handleChange}
+                        
+                      />:
                         <input
-                        type={type}
+                        type={typeUsed}
                         placeholder={editInput} // Use editInput as the initial value
                         onChange={handleChange}
                         value={editInput}
                       />
+                        
                       )}
                       </div>
                       <button
@@ -111,10 +141,12 @@ function ModalEdit({ type, data,editChange,id}) {
               </Transition.Child>
             </div>
           </div>
-        </Dialog>
+          </Dialog>
       </Transition>
     </div>
   );
 }
 
 export default ModalEdit;
+
+

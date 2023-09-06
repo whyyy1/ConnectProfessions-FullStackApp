@@ -10,7 +10,7 @@ import Profile from './pages/Profile';
 import ProfileView from './pages/ProfileView';
 
 
-function AppStack({user,news,setUser}) {
+function AppStack({user,news,setUser,cld}) {
     
 
     console.log(user)
@@ -19,9 +19,9 @@ function AppStack({user,news,setUser}) {
     <Routes>
         
       <Route path={`/home/${user.id}`} element={<HomePage news={news} />} />
-      <Route path={`/profile/${user.id}`} element={<Profile user={user} />} />
-      <Route path={`/profile/view/:id`} element={<ProfileView  />} />
-      <Route path={`/profile/edit/${user.id}`} element={<ProfilePageEdit user={user} setUser={setUser} />} />
+      <Route path={`/profile/${user.id}`} element={<Profile user={user}  />} />
+      <Route path={`/profile/view/:id`} element={<ProfileView   />} />
+      <Route path={`/profile/edit/${user.id}`} element={<ProfilePageEdit user={user} setUser={setUser}  />} />
       <Route path={`/search/${user.id}`} element={<SearchPage id={user.id}/>} />
       <Route path={`/logout`} element={<LogoutPage />} />
       <Route path={`/loading`} element={<LoadingPage user={user}/>} />

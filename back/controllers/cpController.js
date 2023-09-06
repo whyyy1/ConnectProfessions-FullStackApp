@@ -18,6 +18,20 @@ module.exports.index = async (req, res) => {
     
 };
 
+
+module.exports.delete = async (req,res) => {
+  console.log('delete user?')
+  
+  try{
+    let delUser = await User.findOneAndDelete({ _id: req.params.id , email:req.body.email})
+    console.log(delUser)
+    res.status(200).json({ message: 'successfully deleted' })
+  }catch(e){
+    console.log(e.message)
+    res.status(400).json({ error: e.message })
+  }
+}
+
 module.exports.update = async (req, res) => {
     console.log("edit hit");
     

@@ -14,7 +14,7 @@ function App() {
   const currentUser = useSelector((state) => state.user);
   const [user,setUser] = useState({})
   const [news,setNews] = useState([])
- 
+  
   useEffect(() => {
     async function getNews(){
       let data = await axios.get('https://fp-server-ox4k.onrender.com')
@@ -44,7 +44,7 @@ function App() {
     <ChakraProvider>
       <Router>
         
-        {currentUser.isLoggedIn ? <><AppStack user={user} news={news} setUser={setUser} /><AppBar name={user.firstName} type={'app'} id={user.id} /></> :<> <AuthStack  /><AuthBar type={'auth'} /></> }
+        {currentUser.isLoggedIn ? <><AppStack user={user} news={news} setUser={setUser}  /><AppBar name={user.firstName} type={'app'} id={user.id} /></> :<> <AuthStack  /><AuthBar type={'auth'} /></> }
         
         
         </Router>

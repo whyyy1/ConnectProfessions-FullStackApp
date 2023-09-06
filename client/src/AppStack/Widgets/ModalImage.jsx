@@ -1,9 +1,10 @@
 import { Dialog, Transition } from "@headlessui/react";
+import {AdvancedImage} from '@cloudinary/react';
 import { Fragment, useState, React } from "react";
 function ModalImage({ resume}) {
   const [isOpen, setIsOpen] = useState(false);
  
-
+  
   function closeModal() {
     setIsOpen(false);
   }
@@ -55,7 +56,7 @@ function ModalImage({ resume}) {
                   <div className="mt-2"></div>
 
                   <div className="mt-4">
-                  <p className='mb-14'>{resume}RESUME GOES HERE</p>
+                  <img  className='mb-14' src={resume}/>
                     <button
                       type="button"
                       className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"

@@ -38,7 +38,7 @@ function SearchPage() {
         );
       });
       
-      if (event.target.value.length < 2) {
+      if (event.target.value.length < 1) {
         setFilterState(userData);
       } else {
         setFilterState(filterUsers);
@@ -107,19 +107,21 @@ function SearchPage() {
             <tr>
               <div className="flex  ">
                 {tabs.map((tab, index) => {
-                  return <h1 className="text-lg lg:text-xl font-bold">{tab}/</h1>;
+                  return <h1 key={index} className="text-lg lg:text-xl font-bold">{tab}/</h1>;
                 })}
               </div>
             </tr>
           </thead>
-          <tbody>
-            <div className="flex justify-evenly flex-col md:p-10 text-center ">
-              
+          
+          <tbody className="flex justify-evenly flex-col md:p-10 text-center ">
+            
+        
               {filterState.slice(0,10).map((user,index) => {
                 
                 
                 return (
-                  <button
+                  <div
+                  key={index}
                     className="w-11/12 bg-blue-300 hover:cursor-pointer flex justify-evenly hover:bg-yellow-200 bg-opacity-20 m-4  p-5"
                     id={user._id}
                     onClick={(e) => {
@@ -145,11 +147,11 @@ function SearchPage() {
                     </div>
                     <div className="divider"></div> 
                     
-                  </button>
+                  </div>
                 );
                 
               })}
-            </div>
+            
           </tbody>
         </table>
       </CardBody>

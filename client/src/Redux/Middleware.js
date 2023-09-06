@@ -7,7 +7,7 @@ export const saveStateMiddleware = (store) => (next) => async (action) => {
   // Check if the action type matches "signUp"
   if (actionRequest === "user/signUp") {
     try {
-      const response = await axios.post(`${process.env.SERVER}cp/register`, action.payload);
+      const response = await axios.post(`https://fp-server-ox4k.onrender.com/cp/register`, action.payload);
       // Dispatch a success action with the response data
       console.log(response.data.message);
       // Store token
@@ -22,7 +22,7 @@ export const saveStateMiddleware = (store) => (next) => async (action) => {
     
     console.log(action.payload)
     try{
-        const response = await axios.post(`${process.env.SERVER}cp/login`,action.payload)
+        const response = await axios.post(`https://fp-server-ox4k.onrender.com/cp/login`,action.payload)
         console.log(response)
     }
     catch(e){

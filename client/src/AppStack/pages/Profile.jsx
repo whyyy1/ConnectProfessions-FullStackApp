@@ -1,18 +1,19 @@
 import React from 'react';
+import { AdvancedImage } from '@cloudinary/react';
 import { useNavigate } from 'react-router-dom';
 import ModalImage from '../Widgets/ModalImage';
 import { ProfileCard } from '../Widgets/ProfileImage';
+import ModalDelete from '../Widgets/ModalDelete';
 
-function Profile({ user }) {
+
+function Profile({ user,cld }) {
   const navigate = useNavigate();
-
+  
   const handleEditClick = () => {
     navigate(`/profile/edit/${user.id}`);
   };
 
-  const handleDeleteClick = () => {
-    console.log('delete');
-  };
+  
 
   return (
     <div className="flex">
@@ -21,6 +22,7 @@ function Profile({ user }) {
         <div className="h-screen w-full items-center text-center bg-orange-300 bg-opacity-30 rounded-xl">
           <ProfileCard
             user={{
+            
               name: user.firstName,
               image: user.profileImage,
               email: user.email,
@@ -28,6 +30,7 @@ function Profile({ user }) {
               linkedIn: user.linkedIn,
               type: user.type,
               course: user.course,
+              cld:cld
             }}
           />
           <div className="flex flex-col text-center">
@@ -41,7 +44,8 @@ function Profile({ user }) {
             <button className="mb-14 btn btn-primary" onClick={handleEditClick}>
               Edit
             </button>
-            <button className="mb-14 btn btn-error" onClick={handleDeleteClick}>
+            <ModalDelete user={user} />
+            <button className="mb-14 btn btn-error" >
               Delete
             </button>
           </div>

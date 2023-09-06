@@ -6,13 +6,15 @@ import {
     Typography,
     Tooltip,
   } from "@material-tailwind/react";
-   
+  import {AdvancedImage} from '@cloudinary/react';
+
   export function ProfileCard({user}) {
+    
     return (
       <Card className="m-5 ">
         <CardHeader floated={false} className="h-80">
           <div class='flex justify-center'>
-          <img src={user.image} alt="profile-picture"  />
+          <AdvancedImage  cldImg={user.profileImage} alt={user.image}  />
           </div>
         </CardHeader>
         <CardBody className="text-center">

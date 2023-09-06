@@ -37,11 +37,16 @@ function RegisterForm() {
   async function handleRegister(e) {
     e.preventDefault()
     console.log(regForm);
-    const response = await axios.post(`https://fp-server-ox4k.onrender.com/cp/register`, regForm);
+    try{
+      const response = await axios.post(`https://fp-server-ox4k.onrender.com/cp/register`, regForm);
     console.log(response.data)
     dispatch(signUp(response.data.message))
     
     navigate(`/profile/edit/${response.data.id}`)
+    }
+    catch(e){
+      alert(e.message)
+    }
     
   }
 

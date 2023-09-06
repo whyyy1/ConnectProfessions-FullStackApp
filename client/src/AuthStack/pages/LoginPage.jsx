@@ -35,7 +35,7 @@ function LoginPage() {
                 navigate(`/home/${loginData.data.id}`)
             }
             catch(e){
-                console.log(e)
+                alert(e.message)
             }
             
         }else{
