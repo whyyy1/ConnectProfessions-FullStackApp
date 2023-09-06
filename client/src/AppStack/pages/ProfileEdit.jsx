@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { editUser, logout } from "../../Redux/UserSlice";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Cloudinary } from "@cloudinary/url-gen";
+
 
 function ProfilePageEdit({ user, setUser }) {
   const navigate = useNavigate();
@@ -13,13 +13,8 @@ function ProfilePageEdit({ user, setUser }) {
   // Use the user prop directly instead of copying it to updateForm
   // This ensures that the form is always in sync with the user data
   const [updateForm, setUpdateForm] = useState(user);
-  const cld = new Cloudinary({
-    cloud: {
-      cloudName: "diuz8zjyo",
-      apiKey: "185814167567433",
-      apiSecret: "pJwK4wwR5JqrsKrOa5Ncyn0tcJU",
-    },
-  });
+  
+ 
   async function handleUpdate(e) {
     e.preventDefault();
 
@@ -29,8 +24,7 @@ function ProfilePageEdit({ user, setUser }) {
       updateForm.resume.slice(-4) === "docx"
     ) {
       console.log("SOLID RESUME");
-      const resumeImage = cld.image(`resume-${user.id}`);
-      updateForm.resume = resumeImage.publicID;
+     
     }
     if (
       updateForm.profileImage.slice(-3) === "jpeg" ||
@@ -39,22 +33,20 @@ function ProfilePageEdit({ user, setUser }) {
     ) {
       console.log("SOLID IMAGE");
       let type = updateForm.profileImage.slice(-3);
-      const profileImage = cld.image(`profileImage${user.id}`);
-      const imageUrl = profileImage.toURL(); // Get the
-      updateForm.profileImage = imageUrl
+      
       
     }
 
     console.log(updateForm)
     // Use the user.id from the updateForm object
-
+// https://fp-server-ox4k.onrender.com
       const response = await axios.put(
         `https://fp-server-ox4k.onrender.com/cp/profile/edit/${updateForm.id}`,
         updateForm
       );
-
-      setUser(response.data.message);
-      navigate(`/profile/${updateForm.id}`);
+        console.log(response.data.message)
+      // setUser(response.data.message);
+      // navigate(`/profile/${updateForm.id}`);
   }
 
   function editChange(id, value) {
@@ -92,7 +84,7 @@ function ProfilePageEdit({ user, setUser }) {
           </div>
         ))}
       </div>
-      <form onSubmit={handleUpdate}>
+      <form onSubmit={handleUpdate} >
         <button className="text-center btn btn-primary" type="submit">
           Save
         </button>
