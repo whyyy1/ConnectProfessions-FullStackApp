@@ -8,7 +8,7 @@ module.exports.index = async (req, res) => {
     try{
         const usersData = await User.find().select('-password');
     
-        console.log(usersData.length)
+       
     res.json(usersData)
 //   console.log("Hey you made it ",users);
 
