@@ -50,12 +50,11 @@ function SearchPage() {
 
   useEffect(() => {
     const getUsers = async () => {
-        // const address = process.env.SERVER
-        // console.log(address)
-      // Your asynchronous code here
+    
       try {
         
         const response = await axios.get(`https://fp-server-ox4k.onrender.com/cp/users`);
+        console.log(response)
         setUserData(response.data);
         // Process the data or update state here
       } catch (error) {
@@ -168,7 +167,7 @@ function SearchPage() {
           </Button>
         </div> */}
         
-            <Button onClick={()=>setFilterState(userData)}variant="outlined" size="sm">
+            <Button onClick={()=>getUsers()}variant="outlined" size="sm">
               view all
             </Button>
             

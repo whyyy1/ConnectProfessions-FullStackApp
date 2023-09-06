@@ -20,7 +20,7 @@ function ModalDelete({user}) {
   const handleDeleteClick = async () => {
     console.log('delete',user.id);
     try{
-    let response = await axios.delete(`http://localhost:5000/cp/profile/${user.id}`,{
+    let response = await axios.delete(`https://fp-server-ox4k.onrender.com/cp/profile/${user.id}`,{
         headers: {
             'Authorization': localStorage.getItem('user')
         },
@@ -35,9 +35,9 @@ function ModalDelete({user}) {
   };
   return (
     <>
-      <Button onClick={handleOpen} variant="gradient">
+      <button onClick={handleOpen} variant="gradient" className="mb-14 btn btn-error" >
         Delete
-      </Button>
+      </button>
       <Dialog open={open} handler={handleOpen}>
         <DialogHeader>USER DELETE!</DialogHeader>
         <DialogBody divider>

@@ -45,9 +45,7 @@ function Profile({ user,cld }) {
               Edit
             </button>
             <ModalDelete user={user} />
-            <button className="mb-14 btn btn-error" >
-              Delete
-            </button>
+            
           </div>
         </div>
       </div>

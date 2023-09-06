@@ -26,40 +26,40 @@ import {
           </Typography>
         </CardBody>
         <CardFooter className="flex justify-center gap-7 pt-2">
-          <Tooltip content="Email">
+          <Tooltip content={user.email}>
             <Typography
               as="a"
-              href="#"
+              href={`#${user.email}`}
               variant="lead"
               color="blue"
               textGradient
               className="mb-2 text-md md:text-xl"
             >
-              {user.email}
+              Email
             </Typography>
           </Tooltip>
-          <Tooltip content="Github">
+          <Tooltip content={user.github}>
             <Typography
               as="a"
-              href="#"
+              href={`#${user.github}`}
               variant="lead"
               color="light-blue"
               textGradient
               className="mb-2 text-md md:text-xl"
             >
-              {user.github}
+             GitHub
             </Typography>
           </Tooltip>
-          <Tooltip content="LinkedIn">
+          <Tooltip content={user.linkedIn}>
             <Typography
               as="a"
-              href="#"
+              href={`#${user.linkedIn}`}
               variant="lead"
               color="purple"
               textGradient
               className="mb-2 text-md md:text-xl"
             >
-              {user.linkedIn}
+              LinkedIn
             </Typography>
           </Tooltip>
         </CardFooter>

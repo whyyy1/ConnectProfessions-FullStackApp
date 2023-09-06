@@ -48,13 +48,13 @@ function ProfilePageEdit({ user, setUser }) {
     console.log(updateForm)
     // Use the user.id from the updateForm object
 
-    //   const response = await axios.put(
-    //     `https://fp-server-ox4k.onrender.com/cp/profile/edit/${updateForm.id}`,
-    //     updateForm
-    //   );
+      const response = await axios.put(
+        `https://fp-server-ox4k.onrender.com/cp/profile/edit/${updateForm.id}`,
+        updateForm
+      );
 
-    //   setUser(response.data.message);
-    //   navigate(`/profile/${updateForm.id}`);
+      setUser(response.data.message);
+      navigate(`/profile/${updateForm.id}`);
   }
 
   function editChange(id, value) {
