@@ -2,11 +2,15 @@
 
 # Welcome to Connect Profession
 
-## A central database to find like minded tech professionals and connect! With Connect Professions you sign up with an account. With that account you gain access to our database you can connect or get in contact with others. With the main feed you will see current events that are happening in the community. Also gain access to tech , business, and science articles. With each individual profile you gain sumbit your links github, linkedin, portfolio, email, etc. update information about yourself. Once complete head over to the search page and search for users and click to view their profile and connect!   This is not completed as it is a platform that can take on many features. I wanted to create something responsive and simple using the tools taught in this class. 
+### A central database to find like minded tech professionals and connect! With Connect Professions you sign up with an account. With that account you gain access to our database you can connect or get in contact with others. With the main feed you will see current events that are happening in the community. Also gain access to tech , business, and science articles. With each individual profile you gain sumbit your links github, linkedin, portfolio, email, etc. update information about yourself. Once complete head over to the search page and search for users and click to view their profile and connect!   This is not completed as it is a platform that can take on many features. I wanted to create something responsive and simple using the tools taught in this class. 
+
+# What I learned from this project
+### I learned from this project time and project management. From initail planning to putting pen to paper. Got a better understanding of backend and server requestn and what you can do with those request. State management was also another thing, as controlling what the user sees based on the required permissions. Overall fun project wish I could of add more features,but didn't want to run into time constraints. Also more hands on with databases and manipulation of those databases.
+
 
 # Tech Used 
-## I wanted to use news apis but since I wanna have the feature of an auth user who can create events I want them also have the ability to add news to the news feed. So for the project I just hard coded two data objects to fill the data.
-## As far as libraries this was most of them (IF YOU LOOK CLOSELY YOU CAN SEE CLOUDINARY MULTIPLE TIMES... ran into issuse with that will discuss in unsolved section)
+### I wanted to use news apis but since I wanna have the feature of an auth user who can create events I want them also have the ability to add news to the news feed. So for the project I just hard coded two data objects to fill the data.
+### As far as libraries this was most of them (IF YOU LOOK CLOSELY YOU CAN SEE CLOUDINARY MULTIPLE TIMES... ran into issuse with that will discuss in unsolved section)
     
     "@cloudinary/react": "^1.11.2",
     "@cloudinary/url-gen": "^1.11.2",
@@ -49,7 +53,7 @@
 
 Deployed Website FRONT - [https://fp-front-uiqa.onrender.com]
 
-Deployed Website FRONT - [https://fp-server-ox4k.onrender.com]
+Deployed Website BACK - [https://fp-server-ox4k.onrender.com]
 
 Trello - https://trello.com/b/Kzxxo2IA
 
@@ -64,5 +68,5 @@ Trello - https://trello.com/b/Kzxxo2IA
 - Cloudinary could not get the uploading to work tried multiple ways in the front end , back end , making a call to cloudinary api and I kept getting an error but the image path does save. 
 
 - Since I am unable to get cloudinary working seeing the images is not a feature in the website
-=======
+
 - Since I am unable to get cloudinary working seeing the images is not a feature in the website
