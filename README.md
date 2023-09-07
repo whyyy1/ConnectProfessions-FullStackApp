@@ -62,4 +62,8 @@ Trello - https://trello.com/b/Kzxxo2IA
 # Unresolved Issues 
 
 - Cloudinary could not get the uploading to work tried multiple ways in the front end , back end , making a call to cloudinary api and I kept getting an error but the image path does save. 
+<<<<<<< HEAD
 - Since I am unable to get cloudinary working seeing the images is not a feature in the website
+=======
+- Since I am unable to get cloudinary working seeing the images is not a feature in the website
+>>>>>>> 8658b6f85edc879522212554d465cfa963bb9dc6
