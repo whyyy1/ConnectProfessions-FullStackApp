@@ -5,7 +5,6 @@ import { editUser, logout } from "../../Redux/UserSlice";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-
 function ProfilePageEdit({ user, setUser }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -13,8 +12,7 @@ function ProfilePageEdit({ user, setUser }) {
   // Use the user prop directly instead of copying it to updateForm
   // This ensures that the form is always in sync with the user data
   const [updateForm, setUpdateForm] = useState(user);
-  
- 
+
   async function handleUpdate(e) {
     e.preventDefault();
 
@@ -24,7 +22,6 @@ function ProfilePageEdit({ user, setUser }) {
       updateForm.resume.slice(-4) === "docx"
     ) {
       console.log("SOLID RESUME");
-     
     }
     if (
       updateForm.profileImage.slice(-3) === "jpeg" ||
@@ -33,20 +30,18 @@ function ProfilePageEdit({ user, setUser }) {
     ) {
       console.log("SOLID IMAGE");
       let type = updateForm.profileImage.slice(-3);
-      
-      
     }
 
-    console.log(updateForm)
+    console.log(updateForm);
     // Use the user.id from the updateForm object
-// https://fp-server-ox4k.onrender.com
-      const response = await axios.put(
-        `https://fp-server-ox4k.onrender.com/cp/profile/edit/${updateForm.id}`,
-        updateForm
-      );
-        console.log(response.data.message)
-      // setUser(response.data.message);
-      // navigate(`/profile/${updateForm.id}`);
+    // https://fp-server-ox4k.onrender.com
+    const response = await axios.put(
+      `https://fp-server-ox4k.onrender.com/cp/profile/edit/${updateForm.id}`,
+      updateForm
+    );
+    console.log(response.data.message);
+    setUser(response.data.message);
+    navigate(`/profile/${updateForm.id}`);
   }
 
   function editChange(id, value) {
@@ -67,24 +62,24 @@ function ProfilePageEdit({ user, setUser }) {
           <div key={d} className="flex justify-evenly m-10">
             {d === "resume" || d === "profileImage" ? (
               <ModalEdit
-                type="file" // Remove the curly braces around 'file'
-                maxFileSize={2048} // Pass maxFileSize as a prop (assuming ModalEdit accepts maxFileSize prop)
+                type="file"
+                maxFileSize={2048}
                 id={d}
                 data={updateForm[d]}
                 editChange={editChange}
               />
-            ) : (
+            ) : d !== "iat" && d !== "exp" ? (
               <ModalEdit
                 type="text"
                 id={d}
                 data={updateForm[d]}
                 editChange={editChange}
               />
-            )}
+            ) : null}
           </div>
         ))}
       </div>
-      <form onSubmit={handleUpdate} >
+      <form onSubmit={handleUpdate}>
         <button className="text-center btn btn-primary" type="submit">
           Save
         </button>

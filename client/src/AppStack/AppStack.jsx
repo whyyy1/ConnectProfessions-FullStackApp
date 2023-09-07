@@ -11,9 +11,10 @@ import ProfileView from './pages/ProfileView';
 
 
 function AppStack({user,news,setUser,cld}) {
-    
+    const userSet = useState(user)
 
     console.log(user)
+
   return (
     <div className="relative flex flex-col h-screen">
     <Routes>

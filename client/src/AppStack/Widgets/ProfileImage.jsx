@@ -14,7 +14,7 @@ import {
       <Card className="m-5 ">
         <CardHeader floated={false} className="h-80">
           <div class='flex justify-center'>
-          <AdvancedImage  cldImg={user.profileImage} alt={user.image}  />
+          <img  src={user.image} alt={user.image}  />
           </div>
         </CardHeader>
         <CardBody className="text-center">
@@ -29,7 +29,8 @@ import {
           <Tooltip content={user.email}>
             <Typography
               as="a"
-              href={`#${user.email}`}
+              href={`${user.email}`}
+              target="_blank"
               variant="lead"
               color="blue"
               textGradient
@@ -41,7 +42,8 @@ import {
           <Tooltip content={user.github}>
             <Typography
               as="a"
-              href={`#${user.github}`}
+              href={`${user.github}`}
+              target="_blank"
               variant="lead"
               color="light-blue"
               textGradient
@@ -53,7 +55,8 @@ import {
           <Tooltip content={user.linkedIn}>
             <Typography
               as="a"
-              href={`#${user.linkedIn}`}
+              href={`${user.linkedIn}`}
+              target="_blank"
               variant="lead"
               color="purple"
               textGradient

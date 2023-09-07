@@ -29,7 +29,7 @@ function RegisterForm() {
 
   });
 
-  const options = ["Student/Alumni", "Coach/Staff"];
+  const options = ["TECH", "BUSINESS"];
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -77,7 +77,7 @@ function RegisterForm() {
             Sign Up
             </Typography>
             <Typography color="purple" className="mt-1 font-bold">
-            Enter your details to register. To Begin interacting with the Activate
+            Enter your details to register. To Begin interacting with the
             Community
             </Typography>
         </div>
@@ -148,7 +148,7 @@ function RegisterForm() {
                 className="flex items-center font-bold "
                 >
                 I agree the
-                <a className="font-bold transition-colors text-activate-Sec hover:text-blue-400">
+                <a href="https://media.tenor.com/xaBwfY2otmkAAAAC/youve-agreed-to-all-of-this-kyle-broflovski.gif" target="_blank"  className="font-bold transition-colors text-activate-Sec hover:text-blue-400">
                     &nbsp;Terms and Conditions
                 </a>
                 </Typography>

@@ -2,8 +2,16 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const axios = require("axios");
+const cloudinary = require('cloudinary').v2
 
-const {cloudinary}  = require('../config')
+
+cloudinary.config({ 
+  cloud_name: process.env.CLOUD_NAME, 
+  api_key: process.env.API_KEY, 
+  api_secret: process.env.API_SECRET
+});
+
+
 module.exports.index = async (req, res) => {
     try{
         const usersData = await User.find().select('-password');
@@ -35,46 +43,53 @@ module.exports.delete = async (req,res) => {
 module.exports.update = async (req, res) => {
     console.log("edit hit");
     
+    if(req.body.profileImage!== 'https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg'){
+      console.log('no')
+      console.log(req.body.profileImage)
+    }
     try {
       const userProfile = await User.findById(req.params.id);
       const updateObject = { _id: req.params.id }; // Include _id in the updateObject
         
-      Object.entries(req.body).forEach(([key, value]) => {
+      Object.entries(req.body).forEach(async ([key, value]) => {
         if (value !== undefined && value !== null && value !== "") {
-            // if (key === 'resume') {
-            //     console.log(req.body.resume, req.files);
+            if (key === 'resume') {
+              
+                // console.log(req);
+               
+                // // Upload the resume file to Cloudinary
+                // cloudinary.uploader.upload(value, (err,resumeP ) => {
+                //   if (err) {
+                //     console.error(err);
+                //   } else {
+                //     // Update the user's resume URL in the updateObject
+                //     updateObject.resume = fileResult.secure_url;
       
-            //     // Upload the resume file to Cloudinary
-            //     cloudinary.uploader.upload(value, (err, fileResult) => {
-            //       if (err) {
-            //         console.error(err);
-            //       } else {
-            //         // Update the user's resume URL in the updateObject
-            //         updateObject.resume = fileResult.secure_url;
+                //     // Continue with other updates or save the profile here if needed
+                //   }
+                // });
+              }
+              if (key === 'profileImage') {
+                
+                let imageP = req.body.profileImage
+                let response = await axios.post(`http://localhost:5000/${req.body.id}`,imageP)
+              // console.log(response,'response data')
+                // // Upload the profile image to Cloudinary
+                // cloudinary.uploader.upload(value, (err, imageP) => {
+                //   if (err) {
+                //     console.error(err);
+                //   } else {
+                //     // Update the user's profile image URL in the updateObject
+                //     updateObject.profileImage = imageResult.secure_url;
       
-            //         // Continue with other updates or save the profile here if needed
-            //       }
-            //     });
-            //   }
-            //   if (key === 'profileImage') {
-            //     console.log(req.body.profileImage);
-      
-            //     // Upload the profile image to Cloudinary
-            //     cloudinary.uploader.upload(value, (err, imageResult) => {
-            //       if (err) {
-            //         console.error(err);
-            //       } else {
-            //         // Update the user's profile image URL in the updateObject
-            //         updateObject.profileImage = imageResult.secure_url;
-      
-            //         // Continue with other updates or save the profile here if needed
-            //       }
-            //     });
-            //   }
+                //     // Continue with other updates or save the profile here if needed
+                //   }
+                // });
+              }
           updateObject[key] = value;
         }
       });
-  
+      // console.log(updateObject)
       const updatedProfile = await User.findByIdAndUpdate(
         req.params.id,
         { $set: updateObject },

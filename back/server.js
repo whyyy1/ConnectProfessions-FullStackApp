@@ -6,6 +6,12 @@ const methodOverride = require('method-override')
 const {mongoConfig}  = require('./config')
 const newsData = require('./data/newsData')
 mongoConfig()
+const cloudinary = require('cloudinary');
+
+const multer  = require('multer');
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
+const stream = require('stream');
 // const multer = require('multer');
 
 // // Set up multer with a destination folder and file name customization
@@ -36,6 +42,20 @@ app.get('/',(req,res) => {
     res.json({message:newsData})
 })
 
+app.post('/:id', upload.single('image'), function (req, res, next) {
+    const image = req.body.imageP
+    const upload_stream = cloudinary.v2.uploader.upload_stream(function(err,image) {   
+        console.log(image.secure_url)
+         res.send(image.secure_url);
+   });
+   console.log(upload_stream)
+   const bufferStream = new stream.PassThrough();
+   bufferStream.end(req.file.buffer);
+   bufferStream.pipe(upload_stream);
+   
+
+   
+})
 
 app.listen(process.env.PORT,()=>{
     console.log('listen in on:',process.env.URL_)

@@ -2,7 +2,11 @@ import React from 'react'
 import FeatureOne from '../widgets/FeatureOne'
 import { Dialog } from '@headlessui/react'
 import { UserGroupIcon, UserIcon, StarIcon, RectangleGroupIcon } from '@heroicons/react/24/outline'
+import { useNavigate } from 'react-router-dom'
+
+
 function MainPage() {
+    const navigate = useNavigate()
     const features = [
 
 
@@ -38,7 +42,7 @@ function MainPage() {
           <div className="hidden sm:mb-8 sm:flex sm:justify-center">
             <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
               Presenting to you{' '}
-              <a href="#https://github.com/whyyy1/finalProject" className="font-semibold text-indigo-400">
+              <a href="https://github.com/whyyy1/finalProject/blob/main/README.md" target='_blank' className="font-semibold text-indigo-400">
                 <span className="absolute inset-0" aria-hidden="true" />
                 Read more <span aria-hidden="true">&rarr;</span>
               </a>
@@ -49,17 +53,16 @@ function MainPage() {
               Connect Profession 
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-              Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet
-              fugiat veniam occaecat fugiat aliqua.
+              The Buisness Connecting tool for professionals
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <a
-                href="/login"
+                onClick={()=> navigate('/login')}
                 className="rounded-md bg-orange-600 px-3.5 py-2.5 text-sm font-semibold text-black shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Get started
               </a>
-              <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+              <a href="https://media.tenor.com/WoceTC2XNGcAAAAC/bang-bang-adventure-time.gif" target='_blank' className="text-sm font-semibold leading-6 text-gray-900">
                 Learn more <span aria-hidden="true">→</span>
               </a>
               
