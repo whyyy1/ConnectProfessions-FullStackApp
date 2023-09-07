@@ -5,7 +5,7 @@
 ## A central database to find like minded tech professionals and connect! With Connect Professions you sign up with an account. With that account you gain access to our database you can connect or get in contact with others. With the main feed you will see current events that are happening in the community. Also gain access to tech , business, and science articles. With each individual profile you gain sumbit your links github, linkedin, portfolio, email, etc. update information about yourself. Once complete head over to the search page and search for users and click to view their profile and connect!   This is not completed as it is a platform that can take on many features. I wanted to create something responsive and simple using the tools taught in this class. 
 
 # Tech Used 
-## I wanted to use news apis but since I wanna had the feature of an auth user who can create events I want them also have the ability to add news to the news feed. So for the project I just hard coded to data objects to fill the data.
+## I wanted to use news apis but since I wanna have the feature of an auth user who can create events I want them also have the ability to add news to the news feed. So for the project I just hard coded two data objects to fill the data.
 ## As far as libraries this was most of them (IF YOU LOOK CLOSELY YOU CAN SEE CLOUDINARY MULTIPLE TIMES... ran into issuse with that will discuss in unsolved section)
     
     "@cloudinary/react": "^1.11.2",
@@ -45,7 +45,7 @@
 
 
 # LINKS 
-THE READ ME
+
 
 Deployed Website FRONT - [https://fp-front-uiqa.onrender.com]
 
