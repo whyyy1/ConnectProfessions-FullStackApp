@@ -85,7 +85,7 @@ function SearchPage() {
                 Members list
               </Typography>
               <Typography color="gray" className="mt-1 font-normal text-xl">
-                See information about all members - Showing 10 users by default
+                See information about all members - Showing 20 users by default
               </Typography>
             </div>
           </div>
@@ -125,7 +125,7 @@ function SearchPage() {
             </thead>
 
             <tbody className="flex justify-evenly flex-col md:p-10 text-center ">
-              {filterState.slice(0, 10).map((user, index) => {
+              {filterState.slice(0, 20).map((user, index) => {
                 return (
                   <div
                     key={index}

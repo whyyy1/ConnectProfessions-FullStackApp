@@ -158,7 +158,7 @@ function RegisterForm() {
             <Typography color="gray" className="mt-4 text-center font-bold">
             Already have an account?{" "}
             <a
-                href="/login"
+                onClick={()=>navigate('/login')}
                 className="font-medium  hover:text-blue-400"
             >
                 <strong>Sign In</strong>
