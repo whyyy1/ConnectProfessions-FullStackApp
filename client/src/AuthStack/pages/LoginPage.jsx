@@ -98,7 +98,7 @@ function LoginPage() {
             </Button>
             <Typography color="black" className="mt-4 text-center font-bold">
             Dont have an account?{" "}
-            <a href="/register" className="font-medium text-xl hover:text-yellow-400">
+            <a onClick={()=>navigate('/register')} className="font-medium text-xl hover:text-yellow-400">
                 <strong>Sign Up</strong>
             </a>
             </Typography>
