@@ -29,7 +29,7 @@ import {
           <Tooltip content={user.email}>
             <Typography
               as="a"
-              href={`${user.email}`}
+              href={`mailto: ${user.email}`}
               target="_blank"
               variant="lead"
               color="blue"

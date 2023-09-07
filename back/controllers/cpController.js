@@ -53,39 +53,39 @@ module.exports.update = async (req, res) => {
         
       Object.entries(req.body).forEach(async ([key, value]) => {
         if (value !== undefined && value !== null && value !== "") {
-            if (key === 'resume') {
+            // if (key === 'resume') {
               
-                // console.log(req);
+            //     // console.log(req);
                
-                // // Upload the resume file to Cloudinary
-                // cloudinary.uploader.upload(value, (err,resumeP ) => {
-                //   if (err) {
-                //     console.error(err);
-                //   } else {
-                //     // Update the user's resume URL in the updateObject
-                //     updateObject.resume = fileResult.secure_url;
+            //     // // Upload the resume file to Cloudinary
+            //     // cloudinary.uploader.upload(value, (err,resumeP ) => {
+            //     //   if (err) {
+            //     //     console.error(err);
+            //     //   } else {
+            //     //     // Update the user's resume URL in the updateObject
+            //     //     updateObject.resume = fileResult.secure_url;
       
-                //     // Continue with other updates or save the profile here if needed
-                //   }
-                // });
-              }
-              if (key === 'profileImage') {
+            //     //     // Continue with other updates or save the profile here if needed
+            //     //   }
+            //     // });
+            //   }
+            //   if (key === 'profileImage') {
                 
-                let imageP = req.body.profileImage
-                let response = await axios.post(`http://localhost:5000/${req.body.id}`,imageP)
-              // console.log(response,'response data')
-                // // Upload the profile image to Cloudinary
-                // cloudinary.uploader.upload(value, (err, imageP) => {
-                //   if (err) {
-                //     console.error(err);
-                //   } else {
-                //     // Update the user's profile image URL in the updateObject
-                //     updateObject.profileImage = imageResult.secure_url;
+            //     let imageP = req.body.profileImage
+            //     let response = await axios.post(`http://localhost:5000/${req.body.id}`,imageP)
+            //   // console.log(response,'response data')
+            //     // // Upload the profile image to Cloudinary
+            //     // cloudinary.uploader.upload(value, (err, imageP) => {
+            //     //   if (err) {
+            //     //     console.error(err);
+            //     //   } else {
+            //     //     // Update the user's profile image URL in the updateObject
+            //     //     updateObject.profileImage = imageResult.secure_url;
       
-                //     // Continue with other updates or save the profile here if needed
-                //   }
-                // });
-              }
+            //     //     // Continue with other updates or save the profile here if needed
+            //     //   }
+            //     // });
+            //   }
           updateObject[key] = value;
         }
       });

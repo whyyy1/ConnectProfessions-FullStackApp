@@ -39,7 +39,7 @@ function ProfilePageEdit({ user, setUser }) {
       `https://fp-server-ox4k.onrender.com/cp/profile/edit/${updateForm.id}`,
       updateForm
     );
-    console.log(response.data.message);
+    // console.log(response.data.message);
     setUser(response.data.message);
     navigate(`/profile/${updateForm.id}`);
   }
@@ -56,7 +56,7 @@ function ProfilePageEdit({ user, setUser }) {
       <h1 className="text-4xl">
         Hello <strong>{updateForm.firstName}</strong>!
       </h1>
-      <div className="rounded-xl flex flex-wrap justify-center">
+      <div className="rounded-xl flex flex-col justify-center">
         <>{console.log(updateForm.resume, typeof updateForm.resume)}</>
         {Object.keys(updateForm).map((d, index) => (
           <div key={d} className="flex justify-evenly m-10">
@@ -80,7 +80,7 @@ function ProfilePageEdit({ user, setUser }) {
         ))}
       </div>
       <form onSubmit={handleUpdate}>
-        <button className="text-center btn btn-primary" type="submit">
+        <button className="text-center btn btn-primary mb-20 -mt-20" type="submit">
           Save
         </button>
       </form>
